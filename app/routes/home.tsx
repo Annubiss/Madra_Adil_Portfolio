@@ -1,4 +1,5 @@
 import type { Route } from "./+types/home";
+import { Link } from "react-router";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -31,7 +32,7 @@ export default function Home() {
           "font-mono text-xs leading-loose sm:text-sm"}>
           <p>
             <span className="text-accent">
-              $ 
+              ${" "}
             </span>
             lfg --role frontend --city bucharest
           </p>
@@ -40,6 +41,42 @@ export default function Home() {
             <span aria-hidden="true" className="animate-blink motion-reduce:animate-none"> ▍</span>
           </p>
         </div>
+      </section>
+      <section id="projects" className="max-w-5xl mx-auto px-6 sm:px-8 pb-24">
+          <h2 className="text-sm font-medium text-muted">
+            Projects
+          </h2>
+          <ol className="mt-4 border-t border-line">
+            <li className="border-b border-line py-10 grid gap-4 sm:grid-cols-[10rem_1fr] sm:gap-8">
+              <div>
+                <p className="text-accent">v1.0.0</p>
+                <p className="mt-1 text-muted">2026</p>
+              </div>
+              <div>
+                <h3 className="text-2xl font-semibold tracking-tight">
+                  Crate
+                </h3>
+                <p className="mt-3 max-w-xl leading-relaxed text-muted">
+                  Music discovery and collection on MusicBrainz data.
+                </p>
+                <ul className="mt-5 flex flex-wrap gap-2">
+                  <li className="rounded-md border border-line px-2 py-1 font-mono text-xs text-muted">React</li>
+                  <li className="rounded-md border border-line px-2 py-1 font-mono text-xs text-muted">TypeScript</li>
+                  <li className="rounded-md border border-line px-2 py-1 font-mono text-xs text-muted">Tailwind v4</li>
+                  <li className="rounded-md border border-line px-2 py-1 text-xs text-muted">React Router v7</li>
+                </ul>
+                <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium">
+                  <Link to="/work/crate">Case study →</Link>
+                  <a href="https://musiccrate-adil.netlify.app" target="blank" rel="noopener noreferrer">
+                    Live<span aria-hidden="true"> ↗</span>
+                  </a>
+                  <a href="https://github.com/Annubiss/Music-Crate" target="blank" rel="noopener noreferrer">
+                    Source<span aria-hidden="true"> ↗</span>
+                  </a>
+                </div>
+              </div>
+            </li>
+          </ol>
       </section>
     </main>
   )
