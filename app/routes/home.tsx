@@ -66,12 +66,16 @@ export default function Home() {
                   <li className="rounded-md border border-line px-2 py-1 text-xs text-muted">React Router v7</li>
                 </ul>
                 <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium">
-                  <Link to="/work/crate">Case study →</Link>
-                  <a href="https://musiccrate-adil.netlify.app" target="blank" rel="noopener noreferrer">
+                  <Link to="/work/crate" className="transition-colors hover:text-accent">Case study →</Link>
+                  <a href="https://musiccrate-adil.netlify.app" target="blank" rel="noopener noreferrer"
+                    className="transition-colors hover:text-accent">
                     Live<span aria-hidden="true"> ↗</span>
+                    <span className="sr-only">(opens in a new tab)</span>
                   </a>
-                  <a href="https://github.com/Annubiss/Music-Crate" target="blank" rel="noopener noreferrer">
+                  <a href="https://github.com/Annubiss/Music-Crate" target="blank" rel="noopener noreferrer"
+                    className="transition-colors hover:text-accent">
                     Source<span aria-hidden="true"> ↗</span>
+                    <span className="sr-only">(opens in a new tab)</span>
                   </a>
                 </div>
               </div>
