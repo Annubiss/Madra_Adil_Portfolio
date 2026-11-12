@@ -17,7 +17,7 @@ export function Header() {
                     <a href="/Madra_Adil_CV_EN.pdf" 
                         download="Madra_Adil_CV_EN.pdf" 
                         className={"transition-colors inline-flex min-h-11 items-center " + 
-                            "rounded-md bg-foreground px-4 font-medium text-background transition-colors hover:bg-accent"
+                            "rounded-md bg-foreground px-4 font-medium text-background  hover:bg-accent"
                         }>
                             CV
                     </a>
