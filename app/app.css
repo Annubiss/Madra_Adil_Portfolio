@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono: "Geist Mono Variable", ui-monospace, monospace;
+}
+
+:root {
+  --background: #FAFAF9;
+  --foreground: #0B0C0E;
+  --muted: #5C626B;
+  --line: #E4E4E7;
+  --surface: #F1F1F0;
+  --accent: #1A7F37;
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --background: #0B0C0E;
+  --foreground: #E6E8EB;
+  --muted: #8B9098;
+  --line: #1F232A;
+  --surface: #111317;
+  -accent: #3FB950;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-inline: var(--line);
+  --color-surface: var(--surface);
+  --color-accent: var(--accent);
+}
+
+body {
+  @apply bg-background text-foreground font-sans antialiased;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
