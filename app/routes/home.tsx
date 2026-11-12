@@ -25,8 +25,20 @@ export default function Home() {
         </h1>
          
         <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted">
-          Ex-courier, one year into code. React/Angular and Java/TypeScript in Bucharest, looking for a junior fullstack role
+          Ex-courier, one year into code. React and TypeScript in Bucharest, now learning Angular and Java. Looking for my first developer role.
         </p>
+        <div className={"mt-10 max-w-xl overflow-x-auto rounded-lg border border-line bg-surface px-5 py-4 " + 
+          "font-mono text-xs leading-lose sm:text-sm"}>
+          <p>
+            <span className="text-accent">
+              $ lfg --role frontend --city bucharest
+            </span>
+          </p>
+          <p className="text-muted">
+            → party: 0/1 · status: searching
+            <span aria-hidden="true" className="animate-blink motion-reduce:animate-none"> ▍</span>
+          </p>
+        </div>
       </section>
     </main>
   )
