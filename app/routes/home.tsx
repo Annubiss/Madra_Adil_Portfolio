@@ -19,8 +19,11 @@ export default function Home() {
           ></span>
             Open to work
         </p>
-        <h1 className="text-5xl sm:text-7xl font-semibold tracking-light leading-[1.05]">Madra Adil, frontend developer.</h1>
-        <span className="block text-muted">v1.0.0, looking for a team</span> 
+        <h1 className="text-5xl sm:text-7xl font-semibold tracking-tight leading-[1.05]">
+          Madra Adil, frontend developer.
+          <span className="block text-muted">v1.0.0, looking for a team</span>
+        </h1>
+         
         <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted">
           Ex-courier, one year into code. React/Angular and Java/TypeScript in Bucharest, looking for a junior fullstack role
         </p>

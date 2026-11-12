@@ -3,7 +3,7 @@ import { Link } from "react-router"
 export function Header() {
     return (
         <header className="border-b border-line">
-            <div className="max-w-5xl mx-auto px-6 sm:px-8 py-4 flex flex-wrap gap-4 items-center! justify-between">
+            <div className="max-w-5xl mx-auto px-6 sm:px-8 py-4 flex flex-wrap gap-4 items-center justify-between">
                 <Link to="/" className="font-mono text-sm text-muted">
                     madra-adil <span className="text-accent">v1.0.0</span>
                 </Link>
