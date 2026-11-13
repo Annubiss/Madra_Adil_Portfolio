@@ -10,23 +10,38 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
+const stats = [
+  {value: "2", label: "years of experience" },
+  {value: "2", label: "React apps in production"},
+  {value: "25", label: "projects shipped"}
+]
+
 export default function Home() {
   return (
     <main>
       
       <section className="relative overflow-hidden">
         <div aria-hidden="true" className="absolute inset-0 hero-dots"/>
+        <div 
+          aria-hidden="true"
+          className="hero-glow absolute left-1/2 -top-64 h-140 w-250 -translate-x-1/2"
+        />
         <div  className="max-w-5xl mx-auto px-6 sm:px-8 pt-24 pb-20">
         <p className={"mb-6 inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-3 " 
-          + "py-1.5 font-mono text-xs text-accent"}>
+          + "py-1.5 font-mono text-sm text-accent"}>
           <span 
-            className="size-1.5 rounded-full bg-accent"
+            className="relative flex size-2"
             aria-hidden="true"
-          ></span>
-            Open to work
+          >
+            <span className="absolute inset-0 rounded-full bg-accent opacity-75 animate-ping motion-reduce:animate-none" />
+            <span className="relative size-2 rounded-full bg-accent" />
+          </span>
+            Open to work · Bucharest
         </p>
         <h1 className="text-5xl sm:text-7xl font-semibold tracking-tight leading-[1.05]">
-          Madra Adil, frontend developer.
+          <span className="text-gradient">
+            Madra Adil, frontend developer.
+          </span>
           <span className="block text-muted">v1.0.0, looking for a team</span>
         </h1>
          
@@ -40,8 +55,30 @@ export default function Home() {
           </a>
           <a className="btn btn-secondary">Get in touch</a>
         </div>
+
+          <dl className={"mt-20 grid sm:grid-cols-3 gap-3 to-transparent"
+          }>
+            {stats.map((stat) => {
+              return (
+                <div
+                key={stat.label}
+                className={"flex flex-col gap-1.5 px-7 py-6 rounded-xl border border-line " 
+                  + "bg-linear-to-b from-foreground/3 to-transparent"}
+                >
+                  <dd className="text-4xl font-semibold tracking-tight tabular-nums">
+                    {stat.value}
+                  </dd>
+                  <dt className="font-mono text-sm text-muted">
+                    {stat.label}
+                  </dt>
+                  
+                </div>
+              )
+            })}
+          </dl>
+
         <div className={"mt-10 max-w-xl overflow-x-auto rounded-lg border border-line bg-surface px-5 py-4 " + 
-          "font-mono text-xs leading-loose sm:text-sm"}>
+          "font-mono text-sm leading-loose sm:text-sm"}>
           <p>
             <span className="text-accent">
               ${" "}
@@ -55,7 +92,16 @@ export default function Home() {
         </div>
         </div>
       </section>
-      <section id="projects" className="max-w-5xl mx-auto px-6 sm:px-8 pb-24">
+
+      <section id="projects" className="max-w-5xl mx-auto px-6 sm:px-8 pt-16 pb-8">
+          <p className="mb-9 flex items-center gap-3 font-mono text-xs text-muted">
+            <span className="text-accent">01 </span>
+            Featured project
+            <span aria-hidden="true" className="h-px flex-1 bg-linear-to-r from-line to-transparent" />
+          </p>
+      </section>
+
+      <section >
           <h2 className="text-sm font-medium text-muted">
             Projects
           </h2>
