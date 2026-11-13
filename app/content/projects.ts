@@ -10,6 +10,7 @@ export type Project = {
     stack: string[];
     liveUrl?: string;
     repoUrl: string;
+    featured?: boolean;
 }
 
 export const projects: Project[] = [
@@ -23,6 +24,7 @@ export const projects: Project[] = [
         stack: ["React", "TypeScript", "Tailwind v4", "React Router", "Vitest", "Testing Library"],
         liveUrl: "https://musiccrate-adil.netlify.app",
         repoUrl: "https://github.com/Annubiss/Music-Crate",
+        featured: true,
 
     },
 

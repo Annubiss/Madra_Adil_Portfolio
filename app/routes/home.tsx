@@ -17,6 +17,9 @@ const stats = [
 ]
 
 export default function Home() {
+  const featuredProject = projects.find((project) => project.featured)
+  
+
   return (
     <main>
       
@@ -93,15 +96,22 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="projects" className="max-w-5xl mx-auto px-6 sm:px-8 pt-16 pb-8">
-          <p className="mb-9 flex items-center gap-3 font-mono text-xs text-muted">
-            <span className="text-accent">01 </span>
-            Featured project
-            <span aria-hidden="true" className="h-px flex-1 bg-linear-to-r from-line to-transparent" />
-          </p>
-      </section>
+      {featuredProject && (
+        <section id="projects" className="max-w-5xl mx-auto px-6 sm:px-8 pt-16 pb-8">
+            <p className="mb-9 flex items-center gap-3 font-mono text-sm text-muted">
+              <span className="text-accent">01 </span>
+              Featured project
+              <span aria-hidden="true" className="h-px flex-1 bg-linear-to-r from-line to-transparent" />
+            </p>
 
-      <section >
+            <h2 className="text-5xl font-semibold tracking-tight">
+              {featuredProject?.title}
+            </h2>
+            
+        </section>
+      )}
+
+      <section className="max-w-5xl mx-auto px-6 sm:px-8 pb-24">
           <h2 className="text-sm font-medium text-muted">
             Projects
           </h2>
