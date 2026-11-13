@@ -1,8 +1,9 @@
 import { Link } from "react-router"
+import { Download } from "lucide-react"
 
 export function Header() {
     return (
-        <header className="border-b border-line">
+        <header className="border-b border-line sticky top-0 z-20 bg-background/70 backdrop-blur-md backdrop-saturate-150">
             <div className="max-w-5xl mx-auto px-6 sm:px-8 py-4 flex flex-wrap gap-4 items-center justify-between">
                 <Link to="/" className="font-mono text-sm text-muted">
                     madra-adil <span className="text-accent">v1.0.0</span>
@@ -11,25 +12,15 @@ export function Header() {
                     aria-label="Main"
                     className="flex items-center flex-wrap gap-6 text-sm"
                 >
-                    <Link to="/#projects" className="transition-colors hover:text-accent">Projects</Link>
-                    <Link to="/about" className="transition-colors hover:text-accent">About</Link>
-                    <Link to="/#contact" className="transition-colors hover:text-accent">Contact</Link>
+                    <Link to="/#projects" className="text-muted transition-colors hover:text-foreground">Projects</Link>
+                    <Link to="/skills" className="text-muted transition-colors hover:text-foreground">Skills</Link>
+                    <Link to="/#about" className="text-muted transition-colors hover:text-foreground">About</Link>
 
-                    {/* <button>
-                        fds
-                        <svg
-                
-                        >
-                            <circle />
-                            <path></path>
-                        </svg>
-                    </button> */}
 
                     <a href="/Madra_Adil_CV_EN.pdf" 
                         download="Madra_Adil_CV_EN.pdf" 
-                        className={"transition-colors inline-flex min-h-11 items-center " + 
-                            "rounded-md bg-foreground px-4 font-medium text-background  hover:bg-accent"
-                        }>
+                        className="btn btn-secondary">
+                            <Download size={15}/>
                             CV
                     </a>
                 </nav>
