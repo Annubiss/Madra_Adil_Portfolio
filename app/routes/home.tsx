@@ -30,6 +30,13 @@ export default function Home() {
         <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted">
           Ex-courier, one year into code. React and TypeScript in Bucharest, now learning Angular and Java. Looking for my first developer role.
         </p>
+        <div className="mt-9 flex flex-wrap gap-3">
+          <a href="#projects" 
+          className={"btn btn-primary"}>
+            See my work <span>→</span>
+          </a>
+          <a>Get in touch</a>
+        </div>
         <div className={"mt-10 max-w-xl overflow-x-auto rounded-lg border border-line bg-surface px-5 py-4 " + 
           "font-mono text-xs leading-loose sm:text-sm"}>
           <p>

@@ -14,6 +14,17 @@ export function Header() {
                     <Link to="/#projects" className="transition-colors hover:text-accent">Projects</Link>
                     <Link to="/about" className="transition-colors hover:text-accent">About</Link>
                     <Link to="/#contact" className="transition-colors hover:text-accent">Contact</Link>
+
+                    {/* <button>
+                        fds
+                        <svg
+                
+                        >
+                            <circle />
+                            <path></path>
+                        </svg>
+                    </button> */}
+
                     <a href="/Madra_Adil_CV_EN.pdf" 
                         download="Madra_Adil_CV_EN.pdf" 
                         className={"transition-colors inline-flex min-h-11 items-center " + 
