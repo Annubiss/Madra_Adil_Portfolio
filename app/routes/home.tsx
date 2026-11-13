@@ -96,6 +96,8 @@ export default function Home() {
         </div>
       </section>
 
+{/* featured section begin */}
+
       {featuredProject && (
         <section id="projects" className="max-w-5xl mx-auto px-6 sm:px-8 pt-16 pb-8">
             <p className="mb-9 flex items-center gap-3 font-mono text-sm text-muted">
@@ -104,12 +106,28 @@ export default function Home() {
               <span aria-hidden="true" className="h-px flex-1 bg-linear-to-r from-line to-transparent" />
             </p>
 
+            <p className="mb-4 flex flex-wrap gap-2">
+              <span className="chip">
+                <span 
+                  aria-hidden="true"
+                  className="size-1.5 rounded-full bg-accent" />
+                {featuredProject.status}
+              </span>
+              <span className="chip">{featuredProject.version}</span>
+              <span className="chip">built solo</span>
+            </p>
+
             <h2 className="text-5xl font-semibold tracking-tight">
               {featuredProject?.title}
             </h2>
+            <p className="mt-4 max-w-xl text-xl leading-relaxed text-muted">
+              {featuredProject.summary}
+            </p>
             
         </section>
       )}
+
+{/* featured section end */}
 
       <section className="max-w-5xl mx-auto px-6 sm:px-8 pb-24">
           <h2 className="text-sm font-medium text-muted">

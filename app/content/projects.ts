@@ -20,7 +20,7 @@ export const projects: Project[] = [
         version: "1.0.0",
         year: "2026",
         status: "live",
-        summary: "A music discovery app built on a real public API, typed end to end with TypeScript. My main project so far.",
+        summary: "Search, filter and collect music from the open MusicBrainz database.",
         stack: ["React", "TypeScript", "Tailwind v4", "React Router", "Vitest", "Testing Library"],
         liveUrl: "https://musiccrate-adil.netlify.app",
         repoUrl: "https://github.com/Annubiss/Music-Crate",
