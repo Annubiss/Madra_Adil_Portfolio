@@ -1,6 +1,6 @@
-type ProjectStatus = "live" | "wip" | "archived"
+export type ProjectStatus = "live" | "wip" | "archived"
 
-type Project = {
+export type Project = {
     slug: string;
     title: string;
     version: string;

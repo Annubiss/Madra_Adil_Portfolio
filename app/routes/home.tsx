@@ -1,3 +1,4 @@
+import { projects } from "~/content/projects";
 import type { Route } from "./+types/home";
 import { Link } from "react-router";
 
@@ -47,39 +48,60 @@ export default function Home() {
             Projects
           </h2>
           <ol className="mt-4 border-t border-line">
-            <li className="border-b border-line py-10 grid gap-4 sm:grid-cols-[10rem_1fr] sm:gap-8">
-              <div>
-                <p className="text-accent">v1.0.0</p>
-                <p className="mt-1 text-muted">2026</p>
-              </div>
-              <div>
-                <h3 className="text-2xl font-semibold tracking-tight">
-                  Crate
-                </h3>
-                <p className="mt-3 max-w-xl leading-relaxed text-muted">
-                  Music discovery and collection on MusicBrainz data.
-                </p>
-                <ul className="mt-5 flex flex-wrap gap-2">
-                  <li className="rounded-md border border-line px-2 py-1 font-mono text-xs text-muted">React</li>
-                  <li className="rounded-md border border-line px-2 py-1 font-mono text-xs text-muted">TypeScript</li>
-                  <li className="rounded-md border border-line px-2 py-1 font-mono text-xs text-muted">Tailwind v4</li>
-                  <li className="rounded-md border border-line px-2 py-1 text-xs text-muted">React Router v7</li>
-                </ul>
-                <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium">
-                  <Link to="/work/crate" className="transition-colors hover:text-accent">Case study →</Link>
-                  <a href="https://musiccrate-adil.netlify.app" target="blank" rel="noopener noreferrer"
-                    className="transition-colors hover:text-accent">
-                    Live<span aria-hidden="true"> ↗</span>
-                    <span className="sr-only">(opens in a new tab)</span>
-                  </a>
-                  <a href="https://github.com/Annubiss/Music-Crate" target="blank" rel="noopener noreferrer"
-                    className="transition-colors hover:text-accent">
-                    Source<span aria-hidden="true"> ↗</span>
-                    <span className="sr-only">(opens in a new tab)</span>
-                  </a>
-                </div>
-              </div>
-            </li>
+            {projects.map((project) => {
+              return(
+                <li
+                  key={project.slug}
+                  className="border-b border-line py-10 grid gap-4 sm:grid-cols-[10rem_1fr] sm:gap-8"
+                >
+                  <div className="text-accent font-mono">
+                    <p>v{project.version}</p>
+                    <p className="mt-1 text-muted">{project.year}</p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-2xl font-semibold tracking-tight">
+                      {project.title}
+                    </h3>
+                    <p className="mt-3 max-w-xl leading-relaxed text-muted">
+                      {project.summary}
+                    </p>
+
+                    <ul className="mt-5 flex flex-wrap gap-2">
+                      {project.stack.map((stack) => {
+                        return (
+                          <li className="rounded-md border border-line px-2 py-1 font-mono text-xs text-muted">{stack}</li>
+                        )
+                      })}
+                    </ul>
+
+                    <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium">
+                      <Link to={`/work/${project.slug}`} className="transition-colors hover:text-accent">Case study →</Link>
+                      {project.liveUrl && (
+                      <a 
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="transition-colors hover:text-accent"
+                      >
+                        Live <span aria-hidden="true">↗</span>
+                        <span className="sr-only">(opens in a new tab)</span>
+                      </a>
+                      )}
+                      <a
+                        href={project.repoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="transition-colors hover:text-accent"
+                      >
+                        Source <span aria-hidden="true">↗</span>
+                        <span className="sr-only">(opens in a new tab)</span>
+                      </a>
+                    </div>
+                  </div>
+                </li>
+              )
+            })}
           </ol>
       </section>
     </main>
