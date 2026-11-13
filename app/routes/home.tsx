@@ -2,6 +2,7 @@ import { projects } from "~/content/projects";
 import type { Route } from "./+types/home";
 import { Link } from "react-router";
 import { ProjectEntry } from "~/components/projects/ProjectEntry";
+import { Check } from "lucide-react";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -29,7 +30,7 @@ export default function Home() {
           aria-hidden="true"
           className="hero-glow absolute left-1/2 -top-64 h-140 w-250 -translate-x-1/2"
         />
-        <div  className="max-w-5xl mx-auto px-6 sm:px-8 pt-24 pb-20">
+        <div  className="max-w-5xl mx-auto px-6 sm:px-8 pt-24 pb-20 relative">
         <p className={"mb-6 inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-3 " 
           + "py-1.5 font-mono text-sm text-accent"}>
           <span 
@@ -54,26 +55,27 @@ export default function Home() {
         <div className="mt-9 flex flex-wrap gap-3">
           <a href="#projects" 
           className="btn btn-primary">
-            See my work <span>→</span>
+            See my work <span aria-hidden="true">→</span>
           </a>
-          <a className="btn btn-secondary">Get in touch</a>
+          <a href="#contact" className="btn btn-secondary">Get in touch</a>
         </div>
 
-          <dl className={"mt-20 grid sm:grid-cols-3 gap-3 to-transparent"
+          <dl className={"mt-20 grid sm:grid-cols-3 gap-3"
           }>
             {stats.map((stat) => {
               return (
                 <div
                 key={stat.label}
-                className={"flex flex-col gap-1.5 px-7 py-6 rounded-xl border border-line " 
+                className={"flex flex-col-reverse justify-end gap-1.5 px-7 py-6 rounded-xl border border-line " 
                   + "bg-linear-to-b from-foreground/3 to-transparent"}
                 >
-                  <dd className="text-4xl font-semibold tracking-tight tabular-nums">
-                    {stat.value}
-                  </dd>
                   <dt className="font-mono text-sm text-muted">
                     {stat.label}
                   </dt>
+                  <dd className="text-4xl font-semibold tracking-tight tabular-nums">
+                    {stat.value}
+                  </dd>
+                  
                   
                 </div>
               )
@@ -113,7 +115,7 @@ export default function Home() {
                   className="size-1.5 rounded-full bg-accent" />
                 {featuredProject.status}
               </span>
-              <span className="chip">{featuredProject.version}</span>
+              <span className="chip">v{featuredProject.version}</span>
               <span className="chip">built solo</span>
             </p>
 
@@ -123,6 +125,23 @@ export default function Home() {
             <p className="mt-4 max-w-xl text-xl leading-relaxed text-muted">
               {featuredProject.summary}
             </p>
+            
+            {featuredProject.highlights && (
+              <ul className="mt-7 flex flex-col gap-3">
+                Highlights:
+                {featuredProject.highlights.map((highlight) => {
+                  return(
+                    <li key={highlight} className="flex items-start gap-3">
+                      <Check 
+                      size={16} 
+                      strokeWidth={2.25}
+                      aria-hidden="true"
+                      className="mt-1 skrink-0 text-accent" />{highlight}
+                    </li>
+                  )
+                })}
+              </ul>
+            )}
             
         </section>
       )}

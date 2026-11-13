@@ -23,7 +23,7 @@ export function ProjectEntry({ project } : { project: Project }) {
                     <ul className="mt-5 flex flex-wrap gap-2">
                       {project.stack.map((stack) => {
                         return (
-                          <li className="rounded-md border border-line px-2 py-1 font-mono text-xs text-muted">{stack}</li>
+                          <li key={stack} className="rounded-md border border-line px-2 py-1 font-mono text-xs text-muted">{stack}</li>
                         )
                       })}
                     </ul>

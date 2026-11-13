@@ -11,6 +11,7 @@ export type Project = {
     liveUrl?: string;
     repoUrl: string;
     featured?: boolean;
+    highlights?: string[];
 }
 
 export const projects: Project[] = [
@@ -25,7 +26,9 @@ export const projects: Project[] = [
         liveUrl: "https://musiccrate-adil.netlify.app",
         repoUrl: "https://github.com/Annubiss/Music-Crate",
         featured: true,
-
+        highlights: ["Search albums and songs with 4 combinable filters",
+                    "Save a personal collection and build playlists",
+                    "Written fully in TypeScript, tested before every deploy"],
     },
 
     {

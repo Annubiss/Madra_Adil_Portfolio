@@ -17,7 +17,7 @@
 :root {
   --background: #FAFAF9;
   --foreground: #0B0C0E;
-  --muted: #A1A7B0;
+  --muted: #4F555E;
   --line: #E4E4E7;
   --line-strong: #D4D4D8;
   --surface: #F1F1F0;
@@ -147,7 +147,7 @@ body {
   align-items: center;
   gap: 6px;
   border-radius: 9999px;
-  border: 1px solid;
+  border: 1px solid var(--line);
   background-color: var(--surface);
   padding: 4px 10px;
   font-family: var(--font-mono);

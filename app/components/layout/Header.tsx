@@ -13,14 +13,20 @@ export function Header() {
                     className="flex items-center flex-wrap gap-6 text-sm"
                 >
                     <Link to="/#projects" className="text-muted transition-colors hover:text-foreground">Projects</Link>
-                    <Link to="/skills" className="text-muted transition-colors hover:text-foreground">Skills</Link>
+                    <Link to="/#skills" className="text-muted transition-colors hover:text-foreground">Skills</Link>
                     <Link to="/#about" className="text-muted transition-colors hover:text-foreground">About</Link>
 
 
-                    <a href="/Madra_Adil_CV_EN.pdf" 
+                    <a 
+                        
+                        href="/Madra_Adil_CV_EN.pdf" 
                         download="Madra_Adil_CV_EN.pdf" 
                         className="btn btn-secondary">
-                            <Download size={15}/>
+                            <Download
+                                size={15}
+                                aria-hidden="true"
+                                strokeWidth={1.75}
+                            />
                             CV
                     </a>
                 </nav>
