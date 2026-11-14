@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router";
 import { ProjectEntry } from "~/components/projects/ProjectEntry";
 import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
 import ProjectDetails from "./work.$slug";
+import { BrowserFrame } from "~/components/projects/BrowserFrame";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -171,7 +172,13 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="aspect-16/10 rounded-xl border border-line bg-surface" />
+      <BrowserFrame
+      url={featuredProject.liveUrl ?? featuredProject.repoUrl}
+      >
+       <div className="aspect-16/10 grid place-items-center font-mono text-sm text-muted">
+          [ screenshot ]
+       </div>   
+      </BrowserFrame>
     </div>
   </section>
 )}
