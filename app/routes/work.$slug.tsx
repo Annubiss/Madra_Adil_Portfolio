@@ -3,10 +3,12 @@ import { projects } from "~/content/projects";
 import { Link } from "react-router";
 import { ArrowLeft } from "lucide-react";
 import { BrowserFrame } from "~/components/projects/BrowserFrame";
+import { useFlip } from "~/lib/flip";
 
 
 export default function ProjectDetails({params}: Route.ComponentProps) {
     const destinationProject = projects.find((project) => project.slug === params.slug)
+    const titleRef = useFlip<HTMLHeadingElement>(`title-${params.slug}`)
 
     if(!destinationProject){
         return (
@@ -34,8 +36,9 @@ export default function ProjectDetails({params}: Route.ComponentProps) {
                         
                     </p>
                 <h1 
+                    ref={titleRef}
                     data-flip={`title-${destinationProject.slug}`}
-                    className="text-7xl sm:text-8xl font-semibold tracking-tighter leading-none text-gradient"
+                    className="origin-top-left text-7xl sm:text-8xl font-semibold tracking-tighter leading-none text-gradient"
                 >
                     {destinationProject.title}
                 </h1>

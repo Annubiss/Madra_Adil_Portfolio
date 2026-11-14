@@ -50,7 +50,7 @@ function FrozenOutlet() {
     const saved = scrollPositions.get(location.key)
     if (navigationType !== "POP" || saved === undefined) return
     window.scrollTo(0, saved)
-  })
+  }, [])
 
   return frozen;
 }
@@ -69,7 +69,6 @@ export default function App() {
         const id = el.dataset.flip;
         if (id) flipRects.set(id, el.getBoundingClientRect())
       })
-    console.log(flipRects)
     }
   }, [location.key])
   return (

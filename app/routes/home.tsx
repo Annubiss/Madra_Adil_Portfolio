@@ -6,6 +6,7 @@ import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
 import { BrowserFrame } from "~/components/projects/BrowserFrame";
 import { ProjectBadges } from "~/components/projects/ProjectBadges";
 import { useLayoutEffect } from "react";
+import { useFlip } from "~/lib/flip";
 
 
 export function meta({}: Route.MetaArgs) {
@@ -24,6 +25,7 @@ const stats = [
 export default function Home() {
   const featuredProject = projects.find((project) => project.featured)
   const location = useLocation()
+  const titleRef = useFlip<HTMLHeadingElement>(`title-${featuredProject?.slug}`)
 
   useLayoutEffect(() => {
     if (!location.hash) return
@@ -124,8 +126,9 @@ export default function Home() {
         <ProjectBadges project={featuredProject} className="mb-4" />
 
         <h2 
+          ref={titleRef}
           data-flip={`title-${featuredProject.slug}`}
-          className="text-5xl font-semibold tracking-tight"
+          className="w-fit text-5xl font-semibold tracking-tight"
         >
           {featuredProject.title}
         </h2>
