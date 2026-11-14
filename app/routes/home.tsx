@@ -2,7 +2,7 @@ import { projects } from "~/content/projects";
 import type { Route } from "./+types/home";
 import { Link, useParams } from "react-router";
 import { ProjectEntry } from "~/components/projects/ProjectEntry";
-import { Check } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
 import ProjectDetails from "./work.$slug";
 
 export function meta({}: Route.MetaArgs) {
@@ -143,6 +143,35 @@ export default function Home() {
                 })}
               </ul>
             )}
+
+            <div className="mt-9 flex flex-wrap gap-3">
+              <Link 
+                to={`/work/${featuredProject.slug}`}
+                className="btn btn-primary"
+                >
+                  View details <ArrowRight size={16} aria-hidden="true"/>
+                </Link>
+
+              {featuredProject.liveUrl && (
+                <a 
+                  href={featuredProject.liveUrl}
+                  target="_blank"
+                  className="btn btn-secondary"
+                >
+                  Live <ArrowUpRight size={16} aria-hidden="true" className="text-muted"/>
+                  <span className="sr-only">(opens in a new tab)</span>
+                </a>
+              )}
+              <a 
+                  href={featuredProject.repoUrl}
+                  target="_blank"
+                  className="btn btn-secondary"
+                >
+                  Source<ArrowUpRight size={16} aria-hidden="true" className="text-muted"/>
+                  <span className="sr-only">(opens in a new tab)</span>
+                </a>
+
+            </div>
             
         </section>
       )}
