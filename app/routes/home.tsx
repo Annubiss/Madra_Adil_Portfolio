@@ -130,7 +130,6 @@ export default function Home() {
             
             {featuredProject.highlights && (
               <ul className="mt-7 flex flex-col gap-3">
-                Highlights:
                 {featuredProject.highlights.map((highlight) => {
                   return(
                     <li key={highlight} className="flex items-start gap-3">
@@ -138,7 +137,7 @@ export default function Home() {
                       size={16} 
                       strokeWidth={2.25}
                       aria-hidden="true"
-                      className="mt-1 skrink-0 text-accent" />{highlight}
+                      className="mt-1 shrink-0 text-accent" />{highlight}
                     </li>
                   )
                 })}

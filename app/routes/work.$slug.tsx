@@ -20,9 +20,23 @@ export default function ProjectDetails({params}: Route.ComponentProps) {
             <Link 
                 to="/#projects" 
                 className="inline-flex min-h-11 items-center gap-2 text-sm text-muted transition-colors hover:text-foreground">
-                <ArrowLeft size={16} aria-hidden="true" /> All rojects
+                <ArrowLeft size={16} aria-hidden="true" /> All projects
             </Link>
-            <h1>{destinationProject.title}</h1>
+            <div className="mt-12 flex flex-col items-center text-center">
+                <p className="mb-5 flex flex-wrap justify-center gap-2">
+                        <span className="chip">
+                            <span className="size-1.5 rounded-full bg-accent" aria-hidden="true" />
+                            {destinationProject.status}
+                        </span>
+                        <span className="chip">v{destinationProject.version}</span>
+                        <span className="chip">built solo</span>
+                        
+                    </p>
+                <h1 className="text-7xl sm:text-8xl font-semibold tracking-tighter leading-none text-gradient">
+                    {destinationProject.title}
+                </h1>
+                <p className="mt-6 max-w-2xl text-xl leading-relaxed text-muted">{destinationProject.summary}</p>
+            </div>
         </main>
     )
 }
