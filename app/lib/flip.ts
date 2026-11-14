@@ -7,6 +7,7 @@ export function useFlip<T extends HTMLElement>(id: string) {
     const ref = useRef<T>(null)
 
     useEffect(() => {
+        if(window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
         const el = ref.current
         const from = flipRects.get(id)
 
