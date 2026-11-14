@@ -138,7 +138,7 @@ export default function Home() {
         )}
 
         <div className="mt-9 flex flex-wrap gap-3">
-          <Link to={`/work/${featuredProject.slug}`} className="btn btn-primary">
+          <Link to={`/work/${featuredProject.slug}`}  className="btn btn-primary">
             View details <ArrowRight size={16} aria-hidden="true" />
           </Link>
 

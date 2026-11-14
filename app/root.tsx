@@ -13,6 +13,7 @@ import type { Route } from "./+types/root";
 import "@fontsource-variable/geist"
 import "@fontsource-variable/geist-mono"
 import "./app.css";
+import { ViewTransition } from "react";
 
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -34,8 +35,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
+import { useLocation } from "react-router";
+
 export default function App() {
-  return <Outlet />;
+  const location = useLocation()
+  return <ViewTransition key={location.pathname}><Outlet /></ViewTransition>;
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
