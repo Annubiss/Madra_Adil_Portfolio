@@ -1,8 +1,9 @@
 import { projects } from "~/content/projects";
 import type { Route } from "./+types/home";
-import { Link } from "react-router";
+import { Link, useParams } from "react-router";
 import { ProjectEntry } from "~/components/projects/ProjectEntry";
 import { Check } from "lucide-react";
+import ProjectDetails from "./work.$slug";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -19,6 +20,7 @@ const stats = [
 
 export default function Home() {
   const featuredProject = projects.find((project) => project.featured)
+  
   
 
   return (
