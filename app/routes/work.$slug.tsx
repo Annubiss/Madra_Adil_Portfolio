@@ -2,6 +2,7 @@ import type{ Route } from "./+types/work.$slug"
 import { projects } from "~/content/projects"; 
 import { Link } from "react-router";
 import { ArrowLeft } from "lucide-react";
+import { BrowserFrame } from "~/components/projects/BrowserFrame";
 
 
 export default function ProjectDetails({params}: Route.ComponentProps) {
@@ -36,6 +37,14 @@ export default function ProjectDetails({params}: Route.ComponentProps) {
                     {destinationProject.title}
                 </h1>
                 <p className="mt-6 max-w-2xl text-xl leading-relaxed text-muted">{destinationProject.summary}</p>
+            </div>
+
+            <div className="mt-16">
+                <BrowserFrame url={destinationProject.liveUrl ?? destinationProject.repoUrl}>
+                    <div className="aspect-16/8 grid place-items-center font-mono text-sm text-muted">
+                        [ screenshot ]
+                    </div>
+                </BrowserFrame>
             </div>
         </main>
     )

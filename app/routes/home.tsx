@@ -5,6 +5,7 @@ import { ProjectEntry } from "~/components/projects/ProjectEntry";
 import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
 import ProjectDetails from "./work.$slug";
 import { BrowserFrame } from "~/components/projects/BrowserFrame";
+import { ProjectBadges } from "~/components/projects/ProjectBadges";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -113,14 +114,7 @@ export default function Home() {
 
     <div className="grid items-center gap-14 lg:grid-cols-2">
       <div>
-        <p className="mb-4 flex flex-wrap gap-2">
-          <span className="chip">
-            <span aria-hidden="true" className="size-1.5 rounded-full bg-accent" />
-            {featuredProject.status}
-          </span>
-          <span className="chip">v{featuredProject.version}</span>
-          <span className="chip">built solo</span>
-        </p>
+        <ProjectBadges project={featuredProject} className="mb-4" />
 
         <h2 className="text-5xl font-semibold tracking-tight">
           {featuredProject.title}
