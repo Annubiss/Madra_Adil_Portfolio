@@ -3,7 +3,8 @@ import { Download } from "lucide-react"
 
 export function Header() {
     return (
-        <header className="sticky top-0 z-20 border-b border-line bg-background/70 backdrop-blur-md backdrop-saturate-150 [view-transition-name:site-header] transition-[background-color] duration-300">            <div className="max-w-5xl mx-auto px-6 sm:px-8 py-4 flex flex-wrap gap-4 items-center justify-between">
+        <header className="sticky top-0 z-20 border-b border-line bg-background/70 backdrop-blur-md backdrop-saturate-150" >            
+        <div className="max-w-5xl mx-auto px-6 sm:px-8 py-4 flex flex-wrap gap-4 items-center justify-between">
                 <Link to="/" className="font-mono text-sm text-muted">
                     madra-adil <span className="text-accent">v1.0.0</span>
                 </Link>

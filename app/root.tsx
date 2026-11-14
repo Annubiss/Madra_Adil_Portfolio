@@ -28,12 +28,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <ViewTransition key={location.pathname}>
-          <div>
             <Header />
             {children}
-          </div>
-        </ViewTransition>
         <ScrollRestoration />
         <Scripts />
       </body>
