@@ -2,9 +2,8 @@ import {
   isRouteErrorResponse,
   Links,
   Meta,
-  Outlet,
   Scripts,
-  ScrollRestoration,
+  useNavigationType,
 } from "react-router";
 
 import { Header } from "./components/layout/Header"
@@ -13,11 +12,13 @@ import type { Route } from "./+types/root";
 import "@fontsource-variable/geist"
 import "@fontsource-variable/geist-mono"
 import "./app.css";
-import { ViewTransition } from "react";
+import { ViewTransition, useState, useLayoutEffect } from "react";
+import { AnimatePresence, motion } from "motion/react";
 
-import { useLocation } from "react-router";
+import { useLocation, useOutlet } from "react-router";
+import { flipRects } from "./lib/flip";
+
 export function Layout({ children }: { children: React.ReactNode }) {
-  const location = useLocation();
 
   return (
     <html lang="en" data-theme="dark">
@@ -30,15 +31,68 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body>
             <Header />
             {children}
-        <ScrollRestoration />
+        
         <Scripts />
       </body>
     </html>
   );
 }
 
+const scrollPositions = new Map<string, number>()
+
+function FrozenOutlet() {
+  const outlet = useOutlet()
+  const location = useLocation()
+  const navigationType = useNavigationType()
+  const [frozen] = useState(outlet)
+
+  useLayoutEffect(() => {
+    const saved = scrollPositions.get(location.key)
+    if (navigationType !== "POP" || saved === undefined) return
+    window.scrollTo(0, saved)
+  })
+
+  return frozen;
+}
+
 export default function App() {
-  return <Outlet />;
+  const location = useLocation()
+
+  useLayoutEffect(() => {
+    window.history.scrollRestoration = "manual"
+    const key = location.key
+    return () => {
+      scrollPositions.set(key, window.scrollY)
+
+      flipRects.clear()
+      document.querySelectorAll<HTMLElement>("[data-flip]").forEach((el) => {
+        const id = el.dataset.flip;
+        if (id) flipRects.set(id, el.getBoundingClientRect())
+      })
+    console.log(flipRects)
+    }
+  }, [location.key])
+  return (
+    <AnimatePresence 
+      mode="wait" 
+      initial={false}
+      onExitComplete={() => {
+          if (window.location.hash) return;
+          window.scrollTo(0, 0)
+        }}
+    >
+      <motion.div
+        key={location.pathname}
+        initial={{ opacity: 0, y: 16 }}
+        animate={{opacity: 1, y: 0 }}
+        exit ={{ opacity: 0 }}
+        
+        transition={{ duration: 0.3, ease: "easeOut"}}
+      >
+        <FrozenOutlet />
+      </motion.div>
+    </AnimatePresence>
+  );
 }
 
 

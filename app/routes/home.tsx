@@ -123,7 +123,10 @@ export default function Home() {
       <div>
         <ProjectBadges project={featuredProject} className="mb-4" />
 
-        <h2 className="text-5xl font-semibold tracking-tight">
+        <h2 
+          data-flip={`title-${featuredProject.slug}`}
+          className="text-5xl font-semibold tracking-tight"
+        >
           {featuredProject.title}
         </h2>
 

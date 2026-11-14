@@ -33,7 +33,10 @@ export default function ProjectDetails({params}: Route.ComponentProps) {
                         <span className="chip">built solo</span>
                         
                     </p>
-                <h1 className="text-7xl sm:text-8xl font-semibold tracking-tighter leading-none text-gradient">
+                <h1 
+                    data-flip={`title-${destinationProject.slug}`}
+                    className="text-7xl sm:text-8xl font-semibold tracking-tighter leading-none text-gradient"
+                >
                     {destinationProject.title}
                 </h1>
                 <p className="mt-6 max-w-2xl text-xl leading-relaxed text-muted">{destinationProject.summary}</p>

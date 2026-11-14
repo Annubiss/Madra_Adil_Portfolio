@@ -1,0 +1,1 @@
+export const flipRects = new Map<string, DOMRect>()
