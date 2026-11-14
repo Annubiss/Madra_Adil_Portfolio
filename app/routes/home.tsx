@@ -103,78 +103,78 @@ export default function Home() {
 {/* featured section begin */}
 
       {featuredProject && (
-        <section id="projects" className="max-w-5xl mx-auto px-6 sm:px-8 pt-16 pb-8">
-            <p className="mb-9 flex items-center gap-3 font-mono text-sm text-muted">
-              <span className="text-accent">01 </span>
-              Featured project
-              <span aria-hidden="true" className="h-px flex-1 bg-linear-to-r from-line to-transparent" />
-            </p>
+  <section id="projects" className="max-w-5xl mx-auto px-6 sm:px-8 pt-16 pb-8">
+    <p className="mb-9 flex items-center gap-3 font-mono text-sm text-muted">
+      <span className="text-accent">01 </span>
+      Featured project
+      <span aria-hidden="true" className="h-px flex-1 bg-linear-to-r from-line to-transparent" />
+    </p>
 
-            <p className="mb-4 flex flex-wrap gap-2">
-              <span className="chip">
-                <span 
-                  aria-hidden="true"
-                  className="size-1.5 rounded-full bg-accent" />
-                {featuredProject.status}
-              </span>
-              <span className="chip">v{featuredProject.version}</span>
-              <span className="chip">built solo</span>
-            </p>
+    <div className="grid items-center gap-14 lg:grid-cols-2">
+      <div>
+        <p className="mb-4 flex flex-wrap gap-2">
+          <span className="chip">
+            <span aria-hidden="true" className="size-1.5 rounded-full bg-accent" />
+            {featuredProject.status}
+          </span>
+          <span className="chip">v{featuredProject.version}</span>
+          <span className="chip">built solo</span>
+        </p>
 
-            <h2 className="text-5xl font-semibold tracking-tight">
-              {featuredProject?.title}
-            </h2>
-            <p className="mt-4 max-w-xl text-xl leading-relaxed text-muted">
-              {featuredProject.summary}
-            </p>
-            
-            {featuredProject.highlights && (
-              <ul className="mt-7 flex flex-col gap-3">
-                {featuredProject.highlights.map((highlight) => {
-                  return(
-                    <li key={highlight} className="flex items-start gap-3">
-                      <Check 
-                      size={16} 
-                      strokeWidth={2.25}
-                      aria-hidden="true"
-                      className="mt-1 shrink-0 text-accent" />{highlight}
-                    </li>
-                  )
-                })}
-              </ul>
-            )}
+        <h2 className="text-5xl font-semibold tracking-tight">
+          {featuredProject.title}
+        </h2>
 
-            <div className="mt-9 flex flex-wrap gap-3">
-              <Link 
-                to={`/work/${featuredProject.slug}`}
-                className="btn btn-primary"
-                >
-                  View details <ArrowRight size={16} aria-hidden="true"/>
-                </Link>
+        <p className="mt-4 max-w-xl text-xl leading-relaxed text-muted">
+          {featuredProject.summary}
+        </p>
 
-              {featuredProject.liveUrl && (
-                <a 
-                  href={featuredProject.liveUrl}
-                  target="_blank"
-                  className="btn btn-secondary"
-                >
-                  Live <ArrowUpRight size={16} aria-hidden="true" className="text-muted"/>
-                  <span className="sr-only">(opens in a new tab)</span>
-                </a>
-              )}
-              <a 
-                  href={featuredProject.repoUrl}
-                  target="_blank"
-                  className="btn btn-secondary"
-                >
-                  Source<ArrowUpRight size={16} aria-hidden="true" className="text-muted"/>
-                  <span className="sr-only">(opens in a new tab)</span>
-                </a>
+        {featuredProject.highlights && (
+          <ul className="mt-7 flex flex-col gap-3">
+            {featuredProject.highlights.map((highlight) => {
+              return (
+                <li key={highlight} className="flex items-start gap-3">
+                  <Check size={16} strokeWidth={2.25} aria-hidden="true" className="mt-1 shrink-0 text-accent" />
+                  {highlight}
+                </li>
+              );
+            })}
+          </ul>
+        )}
 
-            </div>
-            
-        </section>
-      )}
+        <div className="mt-9 flex flex-wrap gap-3">
+          <Link to={`/work/${featuredProject.slug}`} className="btn btn-primary">
+            View details <ArrowRight size={16} aria-hidden="true" />
+          </Link>
+
+          {featuredProject.liveUrl && (
+            <a
+              href={featuredProject.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-secondary"
+            >
+              Live <ArrowUpRight size={16} aria-hidden="true" className="text-muted" />
+              <span className="sr-only">(opens in a new tab)</span>
+            </a>
+          )}
+
+          <a
+            href={featuredProject.repoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-secondary"
+          >
+            Source <ArrowUpRight size={16} aria-hidden="true" className="text-muted" />
+            <span className="sr-only">(opens in a new tab)</span>
+          </a>
+        </div>
+      </div>
+
+      <div className="aspect-16/10 rounded-xl border border-line bg-surface" />
+    </div>
+  </section>
+)}
 
 {/* featured section end */}
 
