@@ -155,3 +155,22 @@ body {
   color: var(--muted);
 
 }
+
+::view-transition-group(*),
+::view-transition-old(*),
+::view-transition-new(*) {
+  animation-duration: 0.5s;
+}
+html:active-view-transition header {
+  background-color: var(--background);
+}
+::view-transition-group(site-header),
+::view-transition-old(site-header),
+::view-transition-new(site-header) {
+  animation-duration: 0.01s;
+}
+
+::view-transition-group(site-header) {
+  z-index: 50;
+}
+

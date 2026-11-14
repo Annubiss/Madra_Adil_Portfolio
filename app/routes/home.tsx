@@ -1,11 +1,12 @@
 import { projects } from "~/content/projects";
 import type { Route } from "./+types/home";
-import { Link, useParams } from "react-router";
+import { Link, useLocation } from "react-router";
 import { ProjectEntry } from "~/components/projects/ProjectEntry";
 import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
-import ProjectDetails from "./work.$slug";
 import { BrowserFrame } from "~/components/projects/BrowserFrame";
 import { ProjectBadges } from "~/components/projects/ProjectBadges";
+import { useLayoutEffect } from "react";
+
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -22,7 +23,13 @@ const stats = [
 
 export default function Home() {
   const featuredProject = projects.find((project) => project.featured)
-  
+  const location = useLocation()
+
+  useLayoutEffect(() => {
+    if (!location.hash) return
+    const target = document.getElementById(location.hash.slice(1))
+    target?.scrollIntoView()
+  }, [location.hash])
   
 
   return (

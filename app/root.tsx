@@ -15,8 +15,10 @@ import "@fontsource-variable/geist-mono"
 import "./app.css";
 import { ViewTransition } from "react";
 
-
+import { useLocation } from "react-router";
 export function Layout({ children }: { children: React.ReactNode }) {
+  const location = useLocation();
+
   return (
     <html lang="en" data-theme="dark">
       <head>
@@ -26,8 +28,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <Header />
-        {children}
+        <ViewTransition key={location.pathname}>
+          <div>
+            <Header />
+            {children}
+          </div>
+        </ViewTransition>
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -35,12 +41,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-import { useLocation } from "react-router";
-
 export default function App() {
-  const location = useLocation()
-  return <ViewTransition key={location.pathname}><Outlet /></ViewTransition>;
+  return <Outlet />;
 }
+
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   let message = "Oops!";
