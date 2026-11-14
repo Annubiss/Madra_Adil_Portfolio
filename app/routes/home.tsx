@@ -27,6 +27,7 @@ export default function Home() {
   const location = useLocation()
   const titleRef = useFlip<HTMLHeadingElement>(`title-${featuredProject?.slug}`)
   const frameRef = useFlip<HTMLDivElement>(`frame-${featuredProject?.slug}`)
+  const badgesRef = useFlip<HTMLParagraphElement>(`badges-${featuredProject?.slug}`)
 
   useLayoutEffect(() => {
     if (!location.hash) return
@@ -124,12 +125,17 @@ export default function Home() {
 
     <div className="grid items-center gap-14 lg:grid-cols-2">
       <div>
-        <ProjectBadges project={featuredProject} className="mb-4" />
+        <ProjectBadges 
+          ref={badgesRef}
+          flipId={`badges-${featuredProject.slug}`}
+          project={featuredProject} 
+          className="mb-4 w-fit" 
+        />
 
         <h2 
           ref={titleRef}
           data-flip={`title-${featuredProject.slug}`}
-          className="w-fit text-5xl font-semibold tracking-tight"
+          className="w-fit origin-top-left text-5xl font-semibold tracking-tight"
         >
           {featuredProject.title}
         </h2>

@@ -4,12 +4,14 @@ import { Link } from "react-router";
 import { ArrowLeft } from "lucide-react";
 import { BrowserFrame } from "~/components/projects/BrowserFrame";
 import { useFlip } from "~/lib/flip";
+import { ProjectBadges } from "~/components/projects/ProjectBadges";
 
 
 export default function ProjectDetails({params}: Route.ComponentProps) {
     const destinationProject = projects.find((project) => project.slug === params.slug)
     const titleRef = useFlip<HTMLHeadingElement>(`title-${params.slug}`)
     const frameRef = useFlip<HTMLDivElement>(`frame-${destinationProject?.slug}`)
+    const badgesRef = useFlip<HTMLParagraphElement>(`badges-${destinationProject?.slug}`)
 
     if(!destinationProject){
         return (
@@ -27,15 +29,13 @@ export default function ProjectDetails({params}: Route.ComponentProps) {
                 <ArrowLeft size={16} aria-hidden="true" /> All projects
             </Link>
             <div className="mt-12 flex flex-col items-center text-center">
-                <p className="mb-5 flex flex-wrap justify-center gap-2">
-                        <span className="chip">
-                            <span className="size-1.5 rounded-full bg-accent" aria-hidden="true" />
-                            {destinationProject.status}
-                        </span>
-                        <span className="chip">v{destinationProject.version}</span>
-                        <span className="chip">built solo</span>
-                        
-                    </p>
+                <ProjectBadges
+                    ref={badgesRef}
+                    flipId={`badges-${destinationProject.slug}`}
+                    project={destinationProject}
+                    className="mb-5 w-fit"
+                />
+
                 <h1 
                     ref={titleRef}
                     data-flip={`title-${destinationProject.slug}`}
