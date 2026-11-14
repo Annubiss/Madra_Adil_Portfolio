@@ -9,6 +9,7 @@ import { useFlip } from "~/lib/flip";
 export default function ProjectDetails({params}: Route.ComponentProps) {
     const destinationProject = projects.find((project) => project.slug === params.slug)
     const titleRef = useFlip<HTMLHeadingElement>(`title-${params.slug}`)
+    const frameRef = useFlip<HTMLDivElement>(`frame-${destinationProject?.slug}`)
 
     if(!destinationProject){
         return (
@@ -46,8 +47,12 @@ export default function ProjectDetails({params}: Route.ComponentProps) {
             </div>
 
             <div className="mt-16">
-                <BrowserFrame url={destinationProject.liveUrl ?? destinationProject.repoUrl}>
-                    <div className="aspect-16/8 grid place-items-center font-mono text-sm text-muted">
+                <BrowserFrame 
+                    ref={frameRef}
+                    flipId={`frame-${destinationProject.slug}`}
+                    url={destinationProject.liveUrl ?? destinationProject.repoUrl}
+                >
+                    <div className="aspect-16/10 grid place-items-center font-mono text-sm text-muted">
                         [ screenshot ]
                     </div>
                 </BrowserFrame>

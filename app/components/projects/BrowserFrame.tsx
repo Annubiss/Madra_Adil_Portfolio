@@ -1,9 +1,18 @@
 import type React from "react";
 
 
-export function BrowserFrame({url, children} : {url: string, children: React.ReactNode}) {
+export function BrowserFrame({url, children, ref, flipId} : 
+    {url: string,
+    children: React.ReactNode,
+    ref?: React.Ref<HTMLDivElement>,
+    flipId?: string;
+    }) {
     return (
-        <div className="overflow-hidden  rounded-xl border border-line bg-surface shadow-2xl shadow-black/40">
+        <div 
+            ref={ref}
+            data-flip={flipId}
+            className="origin-top-left overflow-hidden  rounded-xl border border-line bg-surface shadow-2xl shadow-black/40"
+        >
             <div className="flex h-10 items-center gap-2 border-b border-line px-4">
                 <span aria-hidden="true" className="size-2.5 rounded-full bg-line" />
                 <span aria-hidden="true" className="size-2.5 rounded-full bg-line" />

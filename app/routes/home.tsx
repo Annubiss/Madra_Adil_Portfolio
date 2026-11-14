@@ -26,6 +26,7 @@ export default function Home() {
   const featuredProject = projects.find((project) => project.featured)
   const location = useLocation()
   const titleRef = useFlip<HTMLHeadingElement>(`title-${featuredProject?.slug}`)
+  const frameRef = useFlip<HTMLDivElement>(`frame-${featuredProject?.slug}`)
 
   useLayoutEffect(() => {
     if (!location.hash) return
@@ -180,7 +181,9 @@ export default function Home() {
       </div>
 
       <BrowserFrame
-      url={featuredProject.liveUrl ?? featuredProject.repoUrl}
+        ref={frameRef}
+        flipId={`frame-${featuredProject.slug}`}
+        url={featuredProject.liveUrl ?? featuredProject.repoUrl}
       >
        <div className="aspect-16/10 grid place-items-center font-mono text-sm text-muted">
           [ screenshot ]
