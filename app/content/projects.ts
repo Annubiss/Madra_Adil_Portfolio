@@ -12,6 +12,7 @@ export type Project = {
     repoUrl: string;
     featured?: boolean;
     highlights?: string[];
+    group?: string;
 }
 
 export const projects: Project[] = [
@@ -42,5 +43,72 @@ export const projects: Project[] = [
         liveUrl: "https://gametrack-adil.netlify.app",
         repoUrl: "https://github.com/Annubiss/gametrack",
     },
+
+    {
+    slug: "fantastic-beings",
+    title: "Fantastic Beings",
+    version: "1.0.0",
+    year: "2025",
+    status: "live",
+    summary: "Harry Potter-themed match-3 on a 5×5 grid, with scoring, win and lose conditions and sound effects.",
+    stack: ["JavaScript", "HTML", "CSS"],
+    repoUrl: "https://github.com/Annubiss/Portfolio/tree/main/Projects/fantastic-beings-and-how-to-match-them-Annubiss",
+    group: "vanilla",
+},
+{
+    slug: "random-user-generator",
+    title: "Random User Generator",
+    version: "1.0.0",
+    year: "2025",
+    status: "live",
+    summary: "Pulls random profiles from the randomuser.me API. Pick which fields to show and save users that stay after a refresh.",
+    stack: ["JavaScript", "HTML", "CSS"],
+    repoUrl: "https://github.com/Annubiss/Portfolio/tree/main/Projects/random-user-generator-Annubiss",
+    group: "vanilla",
+},
+{
+    slug: "dog-glossary",
+    title: "Dog Glossary",
+    version: "1.0.0",
+    year: "2025",
+    status: "live",
+    summary: "Search dog breeds and sub-breeds from the Dog CEO API, or get a random dog.",
+    stack: ["JavaScript", "HTML", "CSS"],
+    repoUrl: "https://github.com/Annubiss/Portfolio/tree/main/Projects/dog-glossary-Annubiss",
+    group: "vanilla",
+},
+{
+    slug: "accessibility-panel",
+    title: "Website for the Visually Impaired",
+    version: "1.0.0",
+    year: "2025",
+    status: "live",
+    summary: "A control panel that changes text size and color theme across the whole page.",
+    stack: ["JavaScript", "HTML", "CSS"],
+    repoUrl: "https://github.com/Annubiss/Portfolio/tree/main/Projects/website-for-the-visually-impaired-Annubiss",
+    group: "vanilla",
+},
+{
+    slug: "url-shortener",
+    title: "URL Shortener",
+    version: "1.0.0",
+    year: "2025",
+    status: "live",
+    summary: "Turns long links into short codes you can edit, and counts the clicks on each one.",
+    stack: ["JavaScript", "HTML", "CSS"],
+    repoUrl: "https://github.com/Annubiss/Portfolio/tree/main/Projects/url-shortener-Annubiss",
+    group: "vanilla",
+},
+{
+    slug: "virtual-piano",
+    title: "Virtual Piano",
+    version: "1.0.0",
+    year: "2025",
+    status: "live",
+    summary: "Play the piano from your keyboard, with real sounds for the white and black keys.",
+    stack: ["JavaScript", "HTML", "CSS"],
+    repoUrl: "https://github.com/Annubiss/Portfolio/tree/main/Projects/virtual-piano-Annubiss",
+    group: "vanilla",
+},
     
 ]

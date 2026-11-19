@@ -6,6 +6,9 @@ import {
   siVitest,
   siTestinglibrary,
   siVite,
+  siJavascript,
+  siHtml5, 
+  siCss,
   type SimpleIcon,
 } from "simple-icons";
 
@@ -17,4 +20,7 @@ export const stackIcons: Record<string, SimpleIcon> = {
     Vitest: siVitest,
     "Testing Library": siTestinglibrary,
     Vite: siVite,
+    JavaScript: siJavascript,
+    HTML: siHtml5,
+    CSS: siCss,
 }

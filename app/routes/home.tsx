@@ -1,15 +1,15 @@
-import { projects } from "~/content/projects";
-import type { Route } from "./+types/home";
+import { useLayoutEffect } from "react";
 import { Link, useLocation } from "react-router";
-import { ProjectEntry } from "~/components/projects/ProjectEntry";
 import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
+
+import type { Route } from "./+types/home";
+import { projects, type Project } from "~/content/projects";
+import { useFlip } from "~/lib/flip";
+import { SectionLabel } from "~/components/layout/SectionLabel";
 import { BrowserFrame } from "~/components/projects/BrowserFrame";
 import { ProjectBadges } from "~/components/projects/ProjectBadges";
-import { useLayoutEffect } from "react";
-import { useFlip } from "~/lib/flip";
+import { ProjectEntry } from "~/components/projects/ProjectEntry";
 import { StackChip } from "~/components/projects/StackChip";
-import { SectionLabel } from "~/components/layout/SectionLabel";
-
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -19,92 +19,82 @@ export function meta({}: Route.MetaArgs) {
 }
 
 const stats = [
-  {value: "2", label: "years of experience" },
-  {value: "2", label: "React apps in production"},
-  {value: "25", label: "projects shipped"}
-]
+  { value: "2", label: "years of experience" },
+  { value: "2", label: "React apps in production" },
+  { value: "25", label: "projects shipped" },
+];
 
 export default function Home() {
-  const featuredProject = projects.find((project) => project.featured)
-  const location = useLocation()
-  const titleRef = useFlip<HTMLHeadingElement>(`title-${featuredProject?.slug}`)
-  const frameRef = useFlip<HTMLDivElement>(`frame-${featuredProject?.slug}`)
-  const badgesRef = useFlip<HTMLParagraphElement>(`badges-${featuredProject?.slug}`)
+  const location = useLocation();
+  const featuredProject = projects.find((project) => project.featured);
 
   useLayoutEffect(() => {
-    if (!location.hash) return
-    const target = document.getElementById(location.hash.slice(1))
-    target?.scrollIntoView()
-  }, [location.hash])
-  
+    if (!location.hash) return;
+    const target = document.getElementById(location.hash.slice(1));
+    target?.scrollIntoView();
+  }, [location.hash]);
 
   return (
     <main>
-      
-      <section className="relative overflow-hidden">
-        <div aria-hidden="true" className="absolute inset-0 hero-dots"/>
-        <div 
-          aria-hidden="true"
-          className="hero-glow absolute left-1/2 -top-64 h-140 w-250 -translate-x-1/2"
-        />
-        <div  className="max-w-5xl mx-auto px-6 sm:px-8 pt-24 pb-20 relative">
-        <p className={"mb-6 inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-3 " 
-          + "py-1.5 font-mono text-sm text-accent"}>
-          <span 
-            className="relative flex size-2"
-            aria-hidden="true"
-          >
+      <HeroSection />
+      {featuredProject && <FeaturedProjectSection project={featuredProject} />}
+      <ProjectHistorySection />
+    </main>
+  );
+}
+
+function HeroSection() {
+  return (
+    <section className="relative overflow-hidden">
+      <div aria-hidden="true" className="hero-dots absolute inset-0" />
+      <div
+        aria-hidden="true"
+        className="hero-glow absolute left-1/2 -top-64 h-140 w-250 -translate-x-1/2"
+      />
+
+      <div className="relative max-w-5xl mx-auto px-6 sm:px-8 pt-24 pb-20">
+        <p className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full border border-accent/30 bg-accent/10 font-mono text-sm text-accent">
+          <span aria-hidden="true" className="relative flex size-2">
             <span className="absolute inset-0 rounded-full bg-accent opacity-75 animate-ping motion-reduce:animate-none" />
             <span className="relative size-2 rounded-full bg-accent" />
           </span>
-            Open to work · Bucharest
+          Open to work · Bucharest
         </p>
+
         <h1 className="text-5xl sm:text-7xl font-semibold tracking-tight leading-[1.05]">
-          <span className="text-gradient">
-            Madra Adil, frontend developer.
-          </span>
+          <span className="text-gradient">Madra Adil, frontend developer.</span>
           <span className="block text-muted">v1.0.0, looking for a team</span>
         </h1>
-         
+
         <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted">
-          Ex-courier, one year into code. React and TypeScript in Bucharest, now learning Angular and Java. Looking for my first developer role.
+          Ex-courier, one year into code. React and TypeScript in Bucharest, now learning Angular
+          and Java. Looking for my first developer role.
         </p>
+
         <div className="mt-9 flex flex-wrap gap-3">
-          <a href="#projects" 
-          className="btn btn-primary">
+          <a href="#projects" className="btn btn-primary">
             See my work <span aria-hidden="true">→</span>
           </a>
-          <a href="#contact" className="btn btn-secondary">Get in touch</a>
+          <a href="#contact" className="btn btn-secondary">
+            Get in touch
+          </a>
         </div>
 
-          <dl className={"mt-20 grid sm:grid-cols-3 gap-3"
-          }>
-            {stats.map((stat) => {
-              return (
-                <div
-                key={stat.label}
-                className={"flex flex-col-reverse justify-end gap-1.5 px-7 py-6 rounded-xl border border-line " 
-                  + "bg-linear-to-b from-foreground/3 to-transparent"}
-                >
-                  <dt className="font-mono text-sm text-muted">
-                    {stat.label}
-                  </dt>
-                  <dd className="text-4xl font-semibold tracking-tight tabular-nums">
-                    {stat.value}
-                  </dd>
-                  
-                  
-                </div>
-              )
-            })}
-          </dl>
+        <dl className="mt-20 grid sm:grid-cols-3 gap-3">
+          {stats.map((stat) => (
+            <div
+              key={stat.label}
+              className="flex flex-col-reverse justify-end gap-1.5 px-7 py-6 rounded-xl border border-line bg-linear-to-b from-foreground/3 to-transparent"
+            >
+              <dt className="font-mono text-sm text-muted">{stat.label}</dt>
+              <dd className="text-4xl font-semibold tracking-tight tabular-nums">{stat.value}</dd>
+            </div>
+          ))}
+        </dl>
 
-        <div className={"mt-10 max-w-xl overflow-x-auto rounded-lg border border-line bg-surface px-5 py-4 " + 
-          "font-mono text-sm leading-loose sm:text-sm"}>
+        <div className="mt-10 max-w-xl overflow-x-auto px-5 py-4 rounded-lg border border-line bg-surface font-mono text-sm leading-loose">
           <p>
-            <span className="text-accent">
-              ${" "}
-            </span>
+            <span className="text-accent">$ </span>
             lfg --role frontend --city bucharest
           </p>
           <p className="text-muted">
@@ -112,117 +102,115 @@ export default function Home() {
             <span aria-hidden="true" className="animate-blink motion-reduce:animate-none"> ▍</span>
           </p>
         </div>
-        </div>
-      </section>
+      </div>
+    </section>
+  );
+}
 
-{/* featured section begin */}
+function FeaturedProjectSection({ project }: { project: Project }) {
+  const badgesRef = useFlip<HTMLParagraphElement>(`badges-${project.slug}`);
+  const titleRef = useFlip<HTMLHeadingElement>(`title-${project.slug}`);
+  const frameRef = useFlip<HTMLDivElement>(`frame-${project.slug}`);
 
-      {featuredProject && (
-        
-  <section id="projects" className="max-w-5xl mx-auto px-6 sm:px-8 pt-16 pb-8">
-    <SectionLabel number="01" label="Featured project"/>
+  return (
+    <section id="projects" className="max-w-5xl mx-auto px-6 sm:px-8 pt-16 pb-8">
+      <SectionLabel number="01" label="Featured project" />
 
-    <div className="grid items-center gap-14 lg:grid-cols-2">
-      <div>
-        <ProjectBadges 
-          ref={badgesRef}
-          flipId={`badges-${featuredProject.slug}`}
-          project={featuredProject} 
-          className="mb-4 w-fit" 
-        />
+      <div className="grid items-center gap-14 lg:grid-cols-2">
+        <div>
+          <ProjectBadges
+            ref={badgesRef}
+            flipId={`badges-${project.slug}`}
+            project={project}
+            className="mb-4 w-fit"
+          />
 
-        <h2 
-          ref={titleRef}
-          data-flip={`title-${featuredProject.slug}`}
-          className="w-fit origin-top-left text-5xl font-semibold tracking-tight"
-        >
-          {featuredProject.title}
-        </h2>
+          <h3
+            ref={titleRef}
+            data-flip={`title-${project.slug}`}
+            className="w-fit origin-top-left text-5xl font-semibold tracking-tight"
+          >
+            {project.title}
+          </h3>
 
-        <p className="mt-4 max-w-xl text-xl leading-relaxed text-muted">
-          {featuredProject.summary}
-        </p>
+          <p className="mt-4 max-w-xl text-xl leading-relaxed text-muted">{project.summary}</p>
 
-        {featuredProject.highlights && (
-          <ul className="mt-7 flex flex-col gap-3">
-            {featuredProject.highlights.map((highlight) => {
-              return (
+          {project.highlights && (
+            <ul className="mt-7 flex flex-col gap-3">
+              {project.highlights.map((highlight) => (
                 <li key={highlight} className="flex items-start gap-3">
-                  <Check size={16} strokeWidth={2.25} aria-hidden="true" className="mt-1 shrink-0 text-accent" />
+                  <Check
+                    size={16}
+                    strokeWidth={2.25}
+                    aria-hidden="true"
+                    className="mt-1 shrink-0 text-accent"
+                  />
                   {highlight}
                 </li>
-              );
-            })}
-          </ul>
-        )}
+              ))}
+            </ul>
+          )}
 
-        {featuredProject.stack && (
           <ul className="mt-7 flex flex-wrap gap-2">
-            {featuredProject.stack.map((stack) =>{
-              return (
-                  <StackChip key={stack} name={stack}/>
-              )
-            })}
+            {project.stack.map((technology) => (
+              <StackChip key={technology} name={technology} />
+            ))}
           </ul>
-        )}
 
-        <div className="mt-9 flex flex-wrap gap-3">
-          <Link to={`/work/${featuredProject.slug}`}  className="btn btn-primary">
-            View details <ArrowRight size={16} aria-hidden="true" />
-          </Link>
+          <div className="mt-9 flex flex-wrap gap-3">
+            <Link to={`/work/${project.slug}`} className="btn btn-primary">
+              View details <ArrowRight size={16} aria-hidden="true" />
+            </Link>
 
-          {featuredProject.liveUrl && (
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-secondary"
+              >
+                Live <ArrowUpRight size={16} aria-hidden="true" className="text-muted" />
+                <span className="sr-only">(opens in a new tab)</span>
+              </a>
+            )}
+
             <a
-              href={featuredProject.liveUrl}
+              href={project.repoUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-secondary"
             >
-              Live <ArrowUpRight size={16} aria-hidden="true" className="text-muted" />
+              Source <ArrowUpRight size={16} aria-hidden="true" className="text-muted" />
               <span className="sr-only">(opens in a new tab)</span>
             </a>
-          )}
-
-          <a
-            href={featuredProject.repoUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-secondary"
-          >
-            Source <ArrowUpRight size={16} aria-hidden="true" className="text-muted" />
-            <span className="sr-only">(opens in a new tab)</span>
-          </a>
+          </div>
         </div>
+
+        <BrowserFrame
+          ref={frameRef}
+          flipId={`frame-${project.slug}`}
+          url={project.liveUrl ?? project.repoUrl}
+        >
+          <div className="aspect-16/10 grid place-items-center font-mono text-sm text-muted">
+            [ screenshot ]
+          </div>
+        </BrowserFrame>
       </div>
+    </section>
+  );
+}
 
-      <BrowserFrame
-        ref={frameRef}
-        flipId={`frame-${featuredProject.slug}`}
-        url={featuredProject.liveUrl ?? featuredProject.repoUrl}
-      >
-       <div className="aspect-16/10 grid place-items-center font-mono text-sm text-muted">
-          [ screenshot ]
-       </div>   
-      </BrowserFrame>
-    </div>
-  </section>
-)}
+function ProjectHistorySection() {
+  const listedProjects = projects.filter((project) => !project.featured)
+  return (
+    <section className="max-w-5xl mx-auto px-6 sm:px-8 pb-24 pt-24">
+      <SectionLabel number="02" label="Project history" />
 
-{/* featured section end */}
-
-      <section className="max-w-5xl mx-auto px-6 sm:px-8 pb-24">
-          <SectionLabel number="02" label="Project history" />
-          <ol className="mt-4 border-t border-line">
-            {projects.map((project) => {
-              return(
-                <ProjectEntry 
-                  key={project.slug}
-                  project={project}
-                />
-              )
-            })}
-          </ol>
-      </section>
-    </main>
-  )
+      <ol className="relative before:absolute before:left-1.75 before:top-2.5 before:bottom-2.5 before:w-0.5 before:bg-linear-to-b before:from-accent before:via-line before:to-transparent">
+        {listedProjects.map((project) => (
+          <ProjectEntry key={project.slug} project={project} />
+        ))}
+      </ol>
+    </section>
+  );
 }

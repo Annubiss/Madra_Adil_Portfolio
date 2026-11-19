@@ -3,7 +3,6 @@ import { stackIcons } from "~/content/stackIcons";
 
 export function StackChip({ name } : { name: string}) {
     const icon = stackIcons[name]
-    console.log(icon.hex)
     return (
         
         <li className={"inline-flex items-center gap-1.5 rounded-md border border-line px-2 py-1 font-mono " + 
