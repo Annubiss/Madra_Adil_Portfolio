@@ -8,6 +8,7 @@ import { ProjectBadges } from "~/components/projects/ProjectBadges";
 import { useLayoutEffect } from "react";
 import { useFlip } from "~/lib/flip";
 import { StackChip } from "~/components/projects/StackChip";
+import { SectionLabel } from "~/components/layout/SectionLabel";
 
 
 export function meta({}: Route.MetaArgs) {
@@ -117,12 +118,9 @@ export default function Home() {
 {/* featured section begin */}
 
       {featuredProject && (
+        
   <section id="projects" className="max-w-5xl mx-auto px-6 sm:px-8 pt-16 pb-8">
-    <p className="mb-9 flex items-center gap-3 font-mono text-sm text-muted">
-      <span className="text-accent">01 </span>
-      Featured project
-      <span aria-hidden="true" className="h-px flex-1 bg-linear-to-r from-line to-transparent" />
-    </p>
+    <SectionLabel number="01" label="Featured project"/>
 
     <div className="grid items-center gap-14 lg:grid-cols-2">
       <div>
@@ -213,9 +211,7 @@ export default function Home() {
 {/* featured section end */}
 
       <section className="max-w-5xl mx-auto px-6 sm:px-8 pb-24">
-          <h2 className="text-sm font-medium text-muted">
-            Projects
-          </h2>
+          <SectionLabel number="02" label="Project history" />
           <ol className="mt-4 border-t border-line">
             {projects.map((project) => {
               return(
