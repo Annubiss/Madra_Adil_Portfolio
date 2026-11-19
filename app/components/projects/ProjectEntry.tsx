@@ -1,5 +1,6 @@
 import type { Project } from "~/content/projects";
 import { Link } from "react-router";
+import { StackChip } from "./StackChip";
 
 export function ProjectEntry({ project } : { project: Project }) {
     return(
@@ -23,7 +24,7 @@ export function ProjectEntry({ project } : { project: Project }) {
                     <ul className="mt-5 flex flex-wrap gap-2">
                       {project.stack.map((stack) => {
                         return (
-                          <li key={stack} className="rounded-md border border-line px-2 py-1 font-mono text-xs text-muted">{stack}</li>
+                          <StackChip key={stack} name={stack}/>
                         )
                       })}
                     </ul>
