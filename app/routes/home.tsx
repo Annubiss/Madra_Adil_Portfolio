@@ -7,6 +7,7 @@ import { BrowserFrame } from "~/components/projects/BrowserFrame";
 import { ProjectBadges } from "~/components/projects/ProjectBadges";
 import { useLayoutEffect } from "react";
 import { useFlip } from "~/lib/flip";
+import { StackChip } from "~/components/projects/StackChip";
 
 
 export function meta({}: Route.MetaArgs) {
@@ -153,6 +154,16 @@ export default function Home() {
                   {highlight}
                 </li>
               );
+            })}
+          </ul>
+        )}
+
+        {featuredProject.stack && (
+          <ul className="mt-7 flex flex-wrap gap-2">
+            {featuredProject.stack.map((stack) =>{
+              return (
+                  <StackChip key={stack} name={stack}/>
+              )
             })}
           </ul>
         )}
