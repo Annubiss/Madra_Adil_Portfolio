@@ -1,6 +1,6 @@
-import { useLayoutEffect } from "react";
+import { useLayoutEffect, useState } from "react";
 import { Link, useLocation } from "react-router";
-import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Check, ChevronDown, SlidersHorizontal } from "lucide-react";
 
 import type { Route } from "./+types/home";
 import { projects, type Project } from "~/content/projects";
@@ -201,13 +201,47 @@ function FeaturedProjectSection({ project }: { project: Project }) {
 }
 
 function ProjectHistorySection() {
-  const listedProjects = projects.filter((project) => !project.featured)
+  const [isFilterOpen, setIsFilterOpen] = useState(false)
+  const historyProjects = projects.filter((project) => !project.featured)
+  const allTechnologies = [...new Set(historyProjects.flatMap((project) => project.stack))]
   return (
     <section className="max-w-5xl mx-auto px-6 sm:px-8 pb-24 pt-24">
       <SectionLabel number="02" label="Project history" />
 
+      <div className="relative mb-8">
+        <button
+          type="button"
+          aria-expanded={isFilterOpen}
+          aria-controls="technology-filter"
+          onClick={() => setIsFilterOpen(!isFilterOpen)}
+          className="btn btn-secondary"
+        >
+          <SlidersHorizontal size={18} strokeWidth={2} aria-hidden="true"/>
+          Filter by technology
+          <ChevronDown 
+            size={15}
+            aria-hidden="true"
+            className={`text-muted transition-transform ${isFilterOpen ? "rotate-180" : ""}`}
+          />
+        </button>
+
+        {isFilterOpen && (
+          <div
+            id="technology-filter"
+            className="w-64 p-4 bg-surface border border-line rounded-xl left-0 top-full mt-2 z-10 shadow-2xl shadow-black/40"
+          >
+            <ul className="flex flex-col gap-2 font-mono text-sm">
+              {allTechnologies.map((technology) => (
+                <li>{technology}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+      </div>
+
       <ol className="relative before:absolute before:left-1.75 before:top-2.5 before:bottom-2.5 before:w-0.5 before:bg-linear-to-b before:from-accent before:via-line before:to-transparent">
-        {listedProjects.map((project) => (
+        {historyProjects.map((project) => (
           <ProjectEntry key={project.slug} project={project} />
         ))}
       </ol>
