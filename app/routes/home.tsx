@@ -208,13 +208,15 @@ function ProjectHistorySection() {
     <section className="max-w-5xl mx-auto px-6 sm:px-8 pb-24 pt-24">
       <SectionLabel number="02" label="Project history" />
 
-      <div className="relative mb-8">
+      <div className={"w-fit bg-surface border border-line rounded-lg mb-8 shadow-[inset_0_1px_0_rgb(255_255_255/0.05)] "
+        + "transition-colors hover:border-line-strong"
+      }>
         <button
           type="button"
           aria-expanded={isFilterOpen}
           aria-controls="technology-filter"
           onClick={() => setIsFilterOpen(!isFilterOpen)}
-          className="btn btn-secondary"
+          className="w-full min-h-11 inline-flex items-center gap-2 px-4.5 font-medium cursor-pointer"
         >
           <SlidersHorizontal size={18} strokeWidth={2} aria-hidden="true"/>
           Filter by technology
@@ -225,18 +227,21 @@ function ProjectHistorySection() {
           />
         </button>
 
-        {isFilterOpen && (
+        
           <div
             id="technology-filter"
-            className="w-64 p-4 bg-surface border border-line rounded-xl left-0 top-full mt-2 z-10 shadow-2xl shadow-black/40"
+            inert={!isFilterOpen}
+            className={`grid transition-grid[grid-template-rows] duration-200 ease-out motion-reduce:transition-none ${isFilterOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
           >
-            <ul className="flex flex-col gap-2 font-mono text-sm">
+            <div className="overflow-hidden">
+            <ul className="font-mono text-m px-4.5 py-3 flex flex-col gap-2 border-t border-line">
               {allTechnologies.map((technology) => (
-                <li>{technology}</li>
+                <li key={technology}>{technology}</li>
               ))}
             </ul>
           </div>
-        )}
+          </div>
+        
 
       </div>
 
