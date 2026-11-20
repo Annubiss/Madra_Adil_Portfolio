@@ -234,9 +234,22 @@ function ProjectHistorySection() {
             className={`grid transition-grid[grid-template-rows] duration-200 ease-out motion-reduce:transition-none ${isFilterOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
           >
             <div className="overflow-hidden">
-            <ul className="font-mono text-m px-4.5 py-3 flex flex-col gap-2 border-t border-line">
+            <ul className="font-mono px-4.5 py-3 flex flex-col gap-1 border-t border-line">
               {allTechnologies.map((technology) => (
-                <li key={technology}>{technology}</li>
+                <li key={technology}>
+                  <label className="flex items-center gap-2.5 py-1 cursor-pointer">
+                    <span className="relative flex">
+                    <input type="checkbox" className="peer appearance-none size-4 bg-background border border-line-strong checked:bg-accent checked:border-accent rounded cursor-pointer transition-colors"></input>
+                    <Check 
+                      size={12}
+                      strokeWidth={3}
+                      aria-hidden="true"
+                      className="m-auto text-accent-foreground opacity-0 absolute inset-0 pointer-events-none peer-checked:opacity-100"
+                    />
+                    </span>
+                    {technology}
+                  </label>
+                </li>
               ))}
             </ul>
           </div>
