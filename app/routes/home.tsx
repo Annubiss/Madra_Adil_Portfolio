@@ -222,8 +222,8 @@ function ProjectHistorySection() {
   return (
     <section className="max-w-5xl mx-auto px-6 sm:px-8 pb-24 pt-24">
       <SectionLabel number="02" label="Project history" />
-
-      <div className={"w-fit bg-surface border border-line rounded-lg mb-8 shadow-[inset_0_1px_0_rgb(255_255_255/0.05)] "
+      <div className="flex flex-wrap items-start gap-3 mb-8">
+      <div className={"w-fit bg-surface border border-line rounded-lg shadow-[inset_0_1px_0_rgb(255_255_255/0.05)] "
         + "transition-colors hover:border-line-strong"
       }>
         <button
@@ -235,6 +235,12 @@ function ProjectHistorySection() {
         >
           <SlidersHorizontal size={18} strokeWidth={2} aria-hidden="true"/>
           Filter by technology
+          {selectedTechnologies.length > 0 && (
+            
+            <span className="min-w-5 h-5 px-1.5 bg-accent/15 text-accent font-mono text-xs tabular-nums rounded-full inline-flex items-center justify-center">
+              {selectedTechnologies.length}
+            </span>
+          )}
           <ChevronDown 
             size={15}
             aria-hidden="true"
@@ -278,6 +284,7 @@ function ProjectHistorySection() {
           </div>
         
 
+      </div>
       </div>
 
       <ol className="relative before:absolute before:left-1.75 before:top-2.5 before:bottom-2.5 before:w-0.5 before:bg-linear-to-b before:from-accent before:via-line before:to-transparent">
