@@ -202,8 +202,23 @@ function FeaturedProjectSection({ project }: { project: Project }) {
 
 function ProjectHistorySection() {
   const [isFilterOpen, setIsFilterOpen] = useState(false)
+  const [selectedTechnologies, setSelectedTechnologies] = useState<string[]>([])
   const historyProjects = projects.filter((project) => !project.featured)
   const allTechnologies = [...new Set(historyProjects.flatMap((project) => project.stack))]
+
+  function toggleTechnology(technology: string) {
+    if(selectedTechnologies.includes(technology)) {
+      setSelectedTechnologies(selectedTechnologies.filter((selected) => selected !== technology))
+    } else {
+        setSelectedTechnologies([...selectedTechnologies, technology])
+    }
+  }
+
+  const visibleProjects = selectedTechnologies.length > 0 
+    ? historyProjects.filter((project) => project.stack.some((technology) => selectedTechnologies.includes(technology))) 
+    : historyProjects
+
+
   return (
     <section className="max-w-5xl mx-auto px-6 sm:px-8 pb-24 pt-24">
       <SectionLabel number="02" label="Project history" />
@@ -239,7 +254,14 @@ function ProjectHistorySection() {
                 <li key={technology}>
                   <label className="flex items-center gap-2.5 py-1 cursor-pointer">
                     <span className="relative flex">
-                    <input type="checkbox" className="peer appearance-none size-4 bg-background border border-line-strong checked:bg-accent checked:border-accent rounded cursor-pointer transition-colors"></input>
+                    <input 
+                      type="checkbox"
+                      className="peer appearance-none size-4 bg-background border border-line-strong checked:bg-accent checked:border-accent rounded cursor-pointer transition-colors"
+                      checked={selectedTechnologies.includes(technology)}
+                      onChange={() => toggleTechnology(technology)}
+                    >
+                    </input>
+
                     <Check 
                       size={12}
                       strokeWidth={3}
@@ -259,7 +281,7 @@ function ProjectHistorySection() {
       </div>
 
       <ol className="relative before:absolute before:left-1.75 before:top-2.5 before:bottom-2.5 before:w-0.5 before:bg-linear-to-b before:from-accent before:via-line before:to-transparent">
-        {historyProjects.map((project) => (
+        {visibleProjects.map((project) => (
           <ProjectEntry key={project.slug} project={project} />
         ))}
       </ol>
