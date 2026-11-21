@@ -15,6 +15,7 @@ export function Header() {
                     <Link to="/#projects" className="text-muted transition-colors hover:text-foreground">Projects</Link>
                     <Link to="/#skills" className="text-muted transition-colors hover:text-foreground">Skills</Link>
                     <Link to="/#about" className="text-muted transition-colors hover:text-foreground">About</Link>
+                    <Link to="/#contact" className="text-muted transition-colors hover:text-foreground">Contact</Link>
 
 
                     <a 

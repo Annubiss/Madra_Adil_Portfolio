@@ -17,6 +17,7 @@ import { AnimatePresence, motion } from "motion/react";
 
 import { useLocation, useOutlet } from "react-router";
 import { flipRects } from "./lib/flip";
+import { Footer } from "./components/layout/Footer";
 
 export function Layout({ children }: { children: React.ReactNode }) {
 
@@ -31,6 +32,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body>
             <Header />
             {children}
+            <Footer />
         
         <Scripts />
       </body>
