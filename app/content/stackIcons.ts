@@ -9,6 +9,11 @@ import {
   siJavascript,
   siHtml5, 
   siCss,
+  siNodedotjs,
+  siGit,
+  siNetlify,
+  siAngular,
+  siOpenjdk,
   type SimpleIcon,
 } from "simple-icons";
 
@@ -23,4 +28,9 @@ export const stackIcons: Record<string, SimpleIcon> = {
     JavaScript: siJavascript,
     HTML: siHtml5,
     CSS: siCss,
+    "Node.js": siNodedotjs,
+    Git: siGit,
+    Netlify: siNetlify,
+    Angular: {...siAngular, hex: "DD0031"},
+    Java: {...siOpenjdk, hex: "ED8B00"}
 }

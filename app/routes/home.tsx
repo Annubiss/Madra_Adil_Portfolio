@@ -10,6 +10,7 @@ import { BrowserFrame } from "~/components/projects/BrowserFrame";
 import { ProjectBadges } from "~/components/projects/ProjectBadges";
 import { ProjectEntry } from "~/components/projects/ProjectEntry";
 import { StackChip } from "~/components/projects/StackChip";
+import { skillsGroup } from "~/content/skillsGroup";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -39,6 +40,7 @@ export default function Home() {
       <HeroSection />
       {featuredProject && <FeaturedProjectSection project={featuredProject} />}
       <ProjectHistorySection />
+      <SkillsSection />
     </main>
   );
 }
@@ -294,4 +296,25 @@ function ProjectHistorySection() {
       </ol>
     </section>
   );
+}
+
+function SkillsSection() {
+  return (
+    <section className="max-w-5xl mx-auto px-6 sm:px-8 pb-24" id="skills">
+      <SectionLabel number="03" label="skills"/>
+
+      <div className="grid gap-4 md:grid-cols-3">
+        {skillsGroup.map((skill) => (
+          <div className="p-6 bg-surface border border-line rounded-xl">
+            <h3 className="font-mono text-accent mb-4">{skill.title}</h3>
+            <ul className="flex flex-wrap gap-2">
+              {skill.skills.map((skill) => (
+                <StackChip name={skill}/>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+  )
 }
