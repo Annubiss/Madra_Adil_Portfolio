@@ -5,6 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import { BrowserFrame } from "~/components/projects/BrowserFrame";
 import { useFlip } from "~/lib/flip";
 import { ProjectBadges } from "~/components/projects/ProjectBadges";
+import { StackChip } from "~/components/projects/StackChip";
 
 
 export default function ProjectDetails({params}: Route.ComponentProps) {
@@ -44,6 +45,12 @@ export default function ProjectDetails({params}: Route.ComponentProps) {
                     {destinationProject.title}
                 </h1>
                 <p className="mt-6 max-w-2xl text-xl leading-relaxed text-muted">{destinationProject.summary}</p>
+
+                <ul className="mt-8 flex flex-wrap justify-center gap-2">
+                    {destinationProject.stack.map((technology) => 
+                        <StackChip key={technology} name={technology}/>
+                    )}
+                </ul>
             </div>
 
             <div className="mt-16 mb-5">
