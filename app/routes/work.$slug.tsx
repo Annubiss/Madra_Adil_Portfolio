@@ -52,16 +52,16 @@ export default function ProjectDetails({params}: Route.ComponentProps) {
                     flipId={`frame-${destinationProject.slug}`}
                     url={destinationProject.liveUrl ?? destinationProject.repoUrl}
                 >
-                    {destinationProject.demoPath && (
+                    {destinationProject.demoPath || destinationProject.liveUrl && (
                         <iframe
-                            src={destinationProject.demoPath}
+                            src={destinationProject.demoPath ? destinationProject.demoPath : destinationProject.liveUrl}
                             title={`${destinationProject.title} live demo`}
                             loading="lazy"
                             className="w-full aspect-16/10 bg-background block"
                         ></iframe>
                     )}
 
-                    {!destinationProject.demoPath && (
+                    {!destinationProject.demoPath && !destinationProject.liveUrl  && (
                         <div className="aspect-16/10 grid place-items-center font-mono text-sm text-muted">
                         [ screenshot ]
                     </div>
