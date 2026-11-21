@@ -1,6 +1,6 @@
 import { useLayoutEffect, useState } from "react";
 import { Link, useLocation } from "react-router";
-import { ArrowRight, ArrowUpRight, Check, ChevronDown, SlidersHorizontal } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Check, ChevronDown, Download, Mail, SlidersHorizontal } from "lucide-react";
 
 import type { Route } from "./+types/home";
 import { projects, type Project } from "~/content/projects";
@@ -41,6 +41,8 @@ export default function Home() {
       {featuredProject && <FeaturedProjectSection project={featuredProject} />}
       <ProjectHistorySection />
       <SkillsSection />
+      <AboutSection />
+      <ContactSection />
     </main>
   );
 }
@@ -94,16 +96,7 @@ function HeroSection() {
           ))}
         </dl>
 
-        <div className="mt-10 max-w-xl overflow-x-auto px-5 py-4 rounded-lg border border-line bg-surface font-mono text-sm leading-loose">
-          <p>
-            <span className="text-accent">$ </span>
-            lfg --role frontend --city bucharest
-          </p>
-          <p className="text-muted">
-            → party: 0/1 · status: searching
-            <span aria-hidden="true" className="animate-blink motion-reduce:animate-none"> ▍</span>
-          </p>
-        </div>
+        
       </div>
     </section>
   );
@@ -315,6 +308,55 @@ function SkillsSection() {
           </div>
         ))}
       </div>
+    </section>
+  )
+}
+
+function AboutSection() {
+  return (
+    <section id="about">
+      <SectionLabel number="04" label="About"/>
+      <div className="max-w-2xl flex flex-col gap-5 text-lg leading-relaxed text-muted">
+        <p><strong>I'm Adil, a frontend developer in Bucharest.</strong> I build with React and TypeScript, and I care about the parts people only notice when they're missing: a search that survives a refresh, a modal you can close with Escape, a site that works without a mouse.</p>
+        <p>Before code, I spent a few years as a courier. Now I'm studying at ASE and adding Angular and Java to what I work with.</p>
+      </div>
+    </section>
+  )
+}
+
+function ContactSection() {
+  return (
+    <section id="contact" className="mb-24 mt-20">
+      <SectionLabel number="05" label="Contact"/>
+
+      <p className="text-3xl sm:text-4xl font-semibold tracking-tight max-w-2xl">
+        Hiring for a frontend role? Let's talk.
+      </p>
+      <div className="mt-10 max-w-xl overflow-x-auto px-5 py-4 rounded-lg border border-line bg-surface font-mono text-sm leading-loose">
+          <p>
+            <span className="text-accent">$ </span>
+            lfg --role frontend --city bucharest
+          </p>
+          <p className="text-muted">
+            → party: 0/1 · status: searching
+            <span aria-hidden="true" className="animate-blink motion-reduce:animate-none"> ▍</span>
+          </p>
+        </div>
+
+        <div className="mt-10 flex flex-wrap gap-3">
+          <a className="btn btn-primary" href="mailto:adilmadra9@gmail.com">
+            <Mail />
+            Email
+          </a>
+          <a className="btn btn-primary" href="https://www.linkedin.com/in/adil-madra/">
+            <ArrowUpRight />
+            LinkedIn
+          </a>
+          <a className="btn btn-primary" download="Madra_Adil_CV_EN.pdf">
+            <Download />
+            CV
+          </a>
+        </div>
     </section>
   )
 }
