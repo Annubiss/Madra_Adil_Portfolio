@@ -12,22 +12,30 @@ import type { Route } from "./+types/root";
 import "@fontsource-variable/geist"
 import "@fontsource-variable/geist-mono"
 import "./app.css";
-import { ViewTransition, useState, useLayoutEffect } from "react";
+import {  useState, useLayoutEffect } from "react";
 import { AnimatePresence, motion } from "motion/react";
 
 import { useLocation, useOutlet } from "react-router";
 import { flipRects } from "./lib/flip";
 import { Footer } from "./components/layout/Footer";
 
+
+const themeScript = `{
+  const savedTheme = localStorage.getItem("theme")
+  const systemTheme = matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark"
+  document.documentElement.dataset.theme = savedTheme ?? systemTheme
+}`
+
 export function Layout({ children }: { children: React.ReactNode }) {
 
   return (
-    <html lang="en" data-theme="dark">
+    <html lang="en" data-theme="dark" suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
+        <script dangerouslySetInnerHTML={{__html: themeScript}} />
       </head>
       <body>
             <Header />
