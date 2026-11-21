@@ -1,7 +1,7 @@
 import type{ Route } from "./+types/work.$slug"
 import { projects } from "~/content/projects"; 
 import { Link } from "react-router";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Check } from "lucide-react";
 import { BrowserFrame } from "~/components/projects/BrowserFrame";
 import { useFlip } from "~/lib/flip";
 import { ProjectBadges } from "~/components/projects/ProjectBadges";
@@ -23,7 +23,7 @@ export default function ProjectDetails({params}: Route.ComponentProps) {
     }
     
     return (
-        <main className="max-w-5xl mx-auto px-6 sm:px-8 pt-16">
+        <main className="max-w-5xl mx-auto px-6 sm:px-8 pt-16 pb-24">
             <Link 
                 to="/#projects" 
                 className="inline-flex min-h-11 items-center gap-2 text-sm text-muted transition-colors hover:text-foreground">
@@ -51,6 +51,8 @@ export default function ProjectDetails({params}: Route.ComponentProps) {
                         <StackChip key={technology} name={technology}/>
                     )}
                 </ul>
+
+                
             </div>
 
             <div className="mt-16 mb-5">
@@ -75,6 +77,42 @@ export default function ProjectDetails({params}: Route.ComponentProps) {
                     )}
                     
                 </BrowserFrame>
+            </div>
+            <div className="mt-20 grid gap-12 md:grid-cols-2">
+                {destinationProject.whatItDoes && (
+                    <section>
+                        <h2 className="font-mono text-accent mb-6">What it does:</h2>
+                        <ul className="flex flex-col gap-4">
+                            {destinationProject.whatItDoes.map((feature) =>(
+                                <li key={feature} className="leading-relaxed flex items-start gap-3">
+                                    <Check 
+                                        size={16} 
+                                        strokeWidth={2.25} 
+                                        aria-hidden="true"
+                                        className="text-accent shrink-0 mt-1"
+                                    />
+                                    {feature}
+                                </li>
+                            ))}
+                        </ul>
+                    </section>
+                )}
+
+                {destinationProject.howItsBuilt && (
+                    <section>
+                        <h2 className="font-mono text-accent mb-6">How it's built:</h2>
+                        <ul className="flex flex-col gap-4">
+                            {destinationProject.howItsBuilt.map((point, index) => (
+                                <li key={point} className="leading-relaxed flex items-start gap-4">
+                                    <span aria-hidden="true" className="font-mono text-accent mt-0.5 shrink-0" >
+                                        {String(index + 1).padStart(2, "0")}
+                                    </span>
+                                    {point}
+                                </li>
+                            ))}
+                        </ul>
+                    </section>
+                )}
             </div>
         </main>
     )
