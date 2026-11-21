@@ -46,15 +46,27 @@ export default function ProjectDetails({params}: Route.ComponentProps) {
                 <p className="mt-6 max-w-2xl text-xl leading-relaxed text-muted">{destinationProject.summary}</p>
             </div>
 
-            <div className="mt-16">
+            <div className="mt-16 mb-5">
                 <BrowserFrame 
                     ref={frameRef}
                     flipId={`frame-${destinationProject.slug}`}
                     url={destinationProject.liveUrl ?? destinationProject.repoUrl}
                 >
-                    <div className="aspect-16/10 grid place-items-center font-mono text-sm text-muted">
+                    {destinationProject.demoPath && (
+                        <iframe
+                            src={destinationProject.demoPath}
+                            title={`${destinationProject.title} live demo`}
+                            loading="lazy"
+                            className="w-full aspect-16/10 bg-background block"
+                        ></iframe>
+                    )}
+
+                    {!destinationProject.demoPath && (
+                        <div className="aspect-16/10 grid place-items-center font-mono text-sm text-muted">
                         [ screenshot ]
                     </div>
+                    )}
+                    
                 </BrowserFrame>
             </div>
         </main>

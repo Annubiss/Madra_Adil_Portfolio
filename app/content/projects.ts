@@ -13,6 +13,7 @@ export type Project = {
     featured?: boolean;
     highlights?: string[];
     group?: string;
+    demoPath?: string;
 }
 
 export const projects: Project[] = [
@@ -54,6 +55,7 @@ export const projects: Project[] = [
     stack: ["JavaScript", "HTML", "CSS"],
     repoUrl: "https://github.com/Annubiss/Portfolio/tree/main/Projects/fantastic-beings-and-how-to-match-them-Annubiss",
     group: "vanilla",
+    demoPath: "/demos/fantastyc-beings/index.html",
 },
 {
     slug: "random-user-generator",
@@ -65,6 +67,7 @@ export const projects: Project[] = [
     stack: ["JavaScript", "HTML", "CSS"],
     repoUrl: "https://github.com/Annubiss/Portfolio/tree/main/Projects/random-user-generator-Annubiss",
     group: "vanilla",
+    demoPath: "/demos/random-user-generator/index.html",
 },
 {
     slug: "dog-glossary",
@@ -76,6 +79,7 @@ export const projects: Project[] = [
     stack: ["JavaScript", "HTML", "CSS"],
     repoUrl: "https://github.com/Annubiss/Portfolio/tree/main/Projects/dog-glossary-Annubiss",
     group: "vanilla",
+    demoPath: "/demos/dog-glossary/index.html",
 },
 {
     slug: "accessibility-panel",
@@ -87,6 +91,7 @@ export const projects: Project[] = [
     stack: ["JavaScript", "HTML", "CSS"],
     repoUrl: "https://github.com/Annubiss/Portfolio/tree/main/Projects/website-for-the-visually-impaired-Annubiss",
     group: "vanilla",
+    demoPath: "/demos/website-for-the-visually-impaired/index.html",
 },
 {
     slug: "url-shortener",
@@ -98,6 +103,7 @@ export const projects: Project[] = [
     stack: ["JavaScript", "HTML", "CSS"],
     repoUrl: "https://github.com/Annubiss/Portfolio/tree/main/Projects/url-shortener-Annubiss",
     group: "vanilla",
+    demoPath: "/demos/url-shortener/index.html",
 },
 {
     slug: "virtual-piano",
@@ -109,6 +115,7 @@ export const projects: Project[] = [
     stack: ["JavaScript", "HTML", "CSS"],
     repoUrl: "https://github.com/Annubiss/Portfolio/tree/main/Projects/virtual-piano-Annubiss",
     group: "vanilla",
+    demoPath: "/demos/virtual-piano/index.html",
 },
     
 ]

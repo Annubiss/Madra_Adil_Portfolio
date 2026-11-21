@@ -1,0 +1,152 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    
+    
+}
+
+#board {
+    min-height: 76.75%;
+    padding: 0;
+    background-image: url(Images/board-bg.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat-y;
+
+    position: relative;
+    
+    padding-top: calc(10vw + 3vh);
+    z-index: 0;
+    
+}
+
+#status-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10vw;
+
+    background-image: url(Images/state-panel-bg.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    z-index: 10;
+}
+
+#map {
+    border-collapse: collapse;
+    table-layout: fixed;
+
+    height: 60vh;
+    width: 60vh;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    
+    
+
+}
+
+.cell {
+    border: 1px solid rgb(103, 101, 168);
+    background-color: rgba(103, 101, 168, 0.4);
+    width: 20%;
+    height: 20%;
+    box-sizing: border-box;
+    
+}
+
+.cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.cell img:hover {
+    transform:scale(1.10);
+    transition-duration: 500ms;
+    z-index: 60;
+}
+
+.cell:hover {
+    background-image: url(Images/cell-hover-bg.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.selected {
+    background-image: url(Images/cell-selected-bg.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+#moves, #score {
+    display: grid;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    right: 18vw;
+    text-align: center;
+    font-family: "Marmeland", sans-serif;
+}
+
+.small-img {
+    height: 5vh;
+}
+
+#beings-to-win {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    left: 8vw;
+    bottom: 8.5vh;
+    
+
+}
+
+#game-footer {
+    display: grid;
+    background-image: url(Images/game-footer.png);
+    background-position: bottom center;
+    background-size: cover;
+    height: 20%;
+    position: fixed;
+    width: 100%;
+    text-align: center;
+    
+}
+
+#footer-writing {
+    margin: 0;
+    padding-top: 9vh;
+    color: white;
+    font-family: Marmeland, sans-serif;
+}
+
+@keyframes matchPop {
+    0% {transform: scale(1); opacity: 1;}
+    50% {transform: scale(1.2); opacity: 1;}
+    100% {transform: scale(0.5); opacity: 0;}
+}
+
+.cell.matched img {
+    animation: matchPop 400ms ease forwards;
+}
+
+
+
+
+
+
+
+
+
+
+
