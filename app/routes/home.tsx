@@ -14,8 +14,8 @@ import { skillsGroup } from "~/content/skillsGroup";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "New React Router App" },
-    { name: "description", content: "Welcome to React Router!" },
+    { title: "Madra Adil · Frontend developer" },
+    { name: "description", content: "Frontend developer in Bucharest building with React and TypeScript. Projects with live demos and source code." },
   ];
 }
 
@@ -314,7 +314,7 @@ function SkillsSection() {
 
 function AboutSection() {
   return (
-    <section id="about">
+    <section id="about" className="max-w-5xl mx-auto px-6 sm:px-8 pb-24">
       <SectionLabel number="04" label="About"/>
       <div className="max-w-2xl flex flex-col gap-5 text-lg leading-relaxed text-muted">
         <p><strong>I'm Adil, a frontend developer in Bucharest.</strong> I build with React and TypeScript, and I care about the parts people only notice when they're missing: a search that survives a refresh, a modal you can close with Escape, a site that works without a mouse.</p>
@@ -326,7 +326,7 @@ function AboutSection() {
 
 function ContactSection() {
   return (
-    <section id="contact" className="mb-24 mt-20">
+    <section id="contact" className="max-w-5xl mx-auto px-6 sm:px-8 pb-24">
       <SectionLabel number="05" label="Contact"/>
 
       <p className="text-3xl sm:text-4xl font-semibold tracking-tight max-w-2xl">

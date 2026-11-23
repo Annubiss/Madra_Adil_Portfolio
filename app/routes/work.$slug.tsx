@@ -8,6 +8,20 @@ import { ProjectBadges } from "~/components/projects/ProjectBadges";
 import { StackChip } from "~/components/projects/StackChip";
 
 
+export function meta({params}: Route.MetaArgs) {
+        const project = projects.find((project) => project.slug === params.slug)
+
+        if(!project) {
+            return[{title: "Project not found · Madra Adil"}]
+        }
+
+        return [
+            {title: `${project.title} · Madra Adil`},
+            {name: "description", content: project.summary}
+        ]
+    }
+
+
 export default function ProjectDetails({params}: Route.ComponentProps) {
     const destinationProject = projects.find((project) => project.slug === params.slug)
     const titleRef = useFlip<HTMLHeadingElement>(`title-${params.slug}`)
@@ -21,6 +35,8 @@ export default function ProjectDetails({params}: Route.ComponentProps) {
             </main>
         )
     }
+
+    
     
     return (
         <main className="max-w-5xl mx-auto px-6 sm:px-8 pt-16 pb-24">
