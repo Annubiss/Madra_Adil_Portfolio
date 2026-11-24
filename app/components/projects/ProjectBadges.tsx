@@ -1,4 +1,5 @@
 import type { Project } from "~/content/projects";
+import { useSiteText } from "~/lib/language";
 
 export function ProjectBadges({ project, className, ref, flipId } :
     { project :Project,
@@ -6,6 +7,12 @@ export function ProjectBadges({ project, className, ref, flipId } :
       ref?: React.Ref<HTMLParagraphElement>,
       flipId?: string, 
     } ) {
+        const text = useSiteText();
+        const statusText = {
+            live: text.statusLive,
+            wip: text.statusWip,
+            archived: text.statusArchived,
+        };
     return (
         <p 
             ref={ref}
@@ -14,13 +21,13 @@ export function ProjectBadges({ project, className, ref, flipId } :
         >
             <span className="chip">
                 <span aria-hidden="true" className="size-1.5 rounded-full bg-accent" />
-                {project.status}
+                {statusText[project.status]}
             </span>
             <span className="chip">
                 
                 v{project.version}
             </span>
-            <span className="chip">built solo</span>
+            <span className="chip">{text.builtSolo}</span>
         </p>
     )
 

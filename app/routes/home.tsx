@@ -11,6 +11,9 @@ import { ProjectBadges } from "~/components/projects/ProjectBadges";
 import { ProjectEntry } from "~/components/projects/ProjectEntry";
 import { StackChip } from "~/components/projects/StackChip";
 import { skillsGroup } from "~/content/skillsGroup";
+import { useLanguage, useLocalizedPath, useSiteText } from "~/lib/language";
+
+
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -19,15 +22,12 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-const stats = [
-  { value: "2", label: "years of experience" },
-  { value: "2", label: "React apps in production" },
-  { value: "25", label: "projects shipped" },
-];
+
 
 export default function Home() {
   const location = useLocation();
   const featuredProject = projects.find((project) => project.featured);
+  
 
   useLayoutEffect(() => {
     if (!location.hash) return;
@@ -48,6 +48,12 @@ export default function Home() {
 }
 
 function HeroSection() {
+  const text = useSiteText()
+  const stats = [
+  { value: "2", label: text.statExperience },
+  { value: "2", label: text.statLiveApps },
+  { value: "25", label: text.statProjects },
+  ];
   return (
     <section className="relative overflow-hidden">
       <div aria-hidden="true" className="hero-dots absolute inset-0" />
@@ -62,25 +68,24 @@ function HeroSection() {
             <span className="absolute inset-0 rounded-full bg-accent opacity-75 animate-ping motion-reduce:animate-none" />
             <span className="relative size-2 rounded-full bg-accent" />
           </span>
-          Open to work · Bucharest
+          {text.heroBadge}
         </p>
 
         <h1 className="text-5xl sm:text-7xl font-semibold tracking-tight leading-[1.05]">
-          <span className="text-gradient">Madra Adil, frontend developer.</span>
-          <span className="block text-muted">v1.0.0, looking for a team</span>
+          <span className="text-gradient">{text.heroTitle}</span>
+          <span className="block text-muted">{text.heroSubtitle}</span>
         </h1>
 
         <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted">
-          Ex-courier, one year into code. React and TypeScript in Bucharest, now learning Angular
-          and Java. Looking for my first developer role.
+          {text.heroIntro}
         </p>
 
         <div className="mt-9 flex flex-wrap gap-3">
           <a href="#projects" className="btn btn-primary">
-            See my work <span aria-hidden="true">→</span>
+            {text.heroSeeWork} <span aria-hidden="true">→</span>
           </a>
           <a href="#contact" className="btn btn-secondary">
-            Get in touch
+            {text.heroGetInTouch}
           </a>
         </div>
 
@@ -106,10 +111,13 @@ function FeaturedProjectSection({ project }: { project: Project }) {
   const badgesRef = useFlip<HTMLParagraphElement>(`badges-${project.slug}`);
   const titleRef = useFlip<HTMLHeadingElement>(`title-${project.slug}`);
   const frameRef = useFlip<HTMLDivElement>(`frame-${project.slug}`);
+  const text = useSiteText()
+  const language = useLanguage()
+  const localizedPath = useLocalizedPath()
 
   return (
     <section id="projects" className="max-w-5xl mx-auto px-6 sm:px-8 pt-16 pb-8">
-      <SectionLabel number="01" label="Featured project" />
+      <SectionLabel number="01" label={text.sectionFeatured} />
 
       <div className="grid items-center gap-14 lg:grid-cols-2">
         <div>
@@ -128,11 +136,11 @@ function FeaturedProjectSection({ project }: { project: Project }) {
             {project.title}
           </h3>
 
-          <p className="mt-4 max-w-xl text-xl leading-relaxed text-muted">{project.summary}</p>
+          <p className="mt-4 max-w-xl text-xl leading-relaxed text-muted">{project.summary[language]}</p>
 
           {project.highlights && (
             <ul className="mt-7 flex flex-col gap-3">
-              {project.highlights.map((highlight) => (
+              {project.highlights[language].map((highlight) => (
                 <li key={highlight} className="flex items-start gap-3">
                   <Check
                     size={16}
@@ -153,8 +161,8 @@ function FeaturedProjectSection({ project }: { project: Project }) {
           </ul>
 
           <div className="mt-9 flex flex-wrap gap-3">
-            <Link to={`/work/${project.slug}`} className="btn btn-primary">
-              View details <ArrowRight size={16} aria-hidden="true" />
+            <Link to={localizedPath(`/work/${project.slug}`)} className="btn btn-primary">
+              {text.viewDetails} <ArrowRight size={16} aria-hidden="true" />
             </Link>
 
             {project.liveUrl && (
@@ -164,8 +172,8 @@ function FeaturedProjectSection({ project }: { project: Project }) {
                 rel="noopener noreferrer"
                 className="btn btn-secondary"
               >
-                Live <ArrowUpRight size={16} aria-hidden="true" className="text-muted" />
-                <span className="sr-only">(opens in a new tab)</span>
+                {text.live} <ArrowUpRight size={16} aria-hidden="true" className="text-muted" />
+                <span className="sr-only">{text.opensInNewTab}</span>
               </a>
             )}
 
@@ -175,8 +183,8 @@ function FeaturedProjectSection({ project }: { project: Project }) {
               rel="noopener noreferrer"
               className="btn btn-secondary"
             >
-              Source <ArrowUpRight size={16} aria-hidden="true" className="text-muted" />
-              <span className="sr-only">(opens in a new tab)</span>
+              {text.source} <ArrowUpRight size={16} aria-hidden="true" className="text-muted" />
+              <span className="sr-only">{text.opensInNewTab}</span>
             </a>
           </div>
         </div>
@@ -200,6 +208,7 @@ function ProjectHistorySection() {
   const [selectedTechnologies, setSelectedTechnologies] = useState<string[]>([])
   const historyProjects = projects.filter((project) => !project.featured)
   const allTechnologies = [...new Set(historyProjects.flatMap((project) => project.stack))]
+  const text = useSiteText()
 
   function toggleTechnology(technology: string) {
     if(selectedTechnologies.includes(technology)) {
@@ -216,7 +225,7 @@ function ProjectHistorySection() {
 
   return (
     <section className="max-w-5xl mx-auto px-6 sm:px-8 pb-24 pt-24">
-      <SectionLabel number="02" label="Project history" />
+      <SectionLabel number="02" label={text.sectionHistory} />
       <div className="flex flex-wrap items-start gap-3 mb-8">
       <div className={"w-fit bg-surface border border-line rounded-lg shadow-[inset_0_1px_0_rgb(255_255_255/0.05)] "
         + "transition-colors hover:border-line-strong"
@@ -229,7 +238,7 @@ function ProjectHistorySection() {
           className="w-full min-h-11 inline-flex items-center gap-2 px-4.5 font-medium cursor-pointer"
         >
           <SlidersHorizontal size={18} strokeWidth={2} aria-hidden="true"/>
-          Filter by technology
+          {text.filterByTechnology}
           {selectedTechnologies.length > 0 && (
             
             <span className="min-w-5 h-5 px-1.5 bg-accent/15 text-accent font-mono text-xs tabular-nums rounded-full inline-flex items-center justify-center">
@@ -292,9 +301,10 @@ function ProjectHistorySection() {
 }
 
 function SkillsSection() {
+  const text = useSiteText()
   return (
     <section className="max-w-5xl mx-auto px-6 sm:px-8 pb-24" id="skills">
-      <SectionLabel number="03" label="skills"/>
+      <SectionLabel number="03" label={text.sectionSkills}/>
 
       <div className="grid gap-4 md:grid-cols-3">
         {skillsGroup.map((skill) => (
@@ -313,24 +323,26 @@ function SkillsSection() {
 }
 
 function AboutSection() {
+  const text = useSiteText()
   return (
     <section id="about" className="max-w-5xl mx-auto px-6 sm:px-8 pb-24">
-      <SectionLabel number="04" label="About"/>
+      <SectionLabel number="04" label={text.sectionAbout}/>
       <div className="max-w-2xl flex flex-col gap-5 text-lg leading-relaxed text-muted">
-        <p><strong>I'm Adil, a frontend developer in Bucharest.</strong> I build with React and TypeScript, and I care about the parts people only notice when they're missing: a search that survives a refresh, a modal you can close with Escape, a site that works without a mouse.</p>
-        <p>Before code, I spent a few years as a courier. Now I'm studying at ASE and adding Angular and Java to what I work with.</p>
+        <p><strong>{text.aboutLead}</strong>{text.aboutText}</p>
+        <p>{text.aboutBackground}</p>
       </div>
     </section>
   )
 }
 
 function ContactSection() {
+  const text = useSiteText()
   return (
     <section id="contact" className="max-w-5xl mx-auto px-6 sm:px-8 pb-24">
-      <SectionLabel number="05" label="Contact"/>
+      <SectionLabel number="05" label={text.sectionContact}/>
 
       <p className="text-3xl sm:text-4xl font-semibold tracking-tight max-w-2xl">
-        Hiring for a frontend role? Let's talk.
+        {text.contactTitle}
       </p>
       <div className="mt-10 max-w-xl overflow-x-auto px-5 py-4 rounded-lg border border-line bg-surface font-mono text-sm leading-loose">
           <p>

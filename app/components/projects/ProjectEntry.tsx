@@ -1,8 +1,13 @@
 import type { Project } from "~/content/projects";
 import { Link } from "react-router";
 import { StackChip } from "./StackChip";
+import { useLanguage, useLocalizedPath, useSiteText } from "~/lib/language";
 
 export function ProjectEntry({ project } : { project: Project }) {
+    const text = useSiteText();
+    const language = useLanguage()
+    const localizedPath = useLocalizedPath()
+    
     return(
     <li
                   key={project.slug}
@@ -27,7 +32,7 @@ export function ProjectEntry({ project } : { project: Project }) {
                       {project.title}
                     </h3>
                     <p className="mt-3 max-w-xl leading-relaxed text-muted">
-                      {project.summary}
+                      {project.summary[language]}
                     </p>
 
                     <ul className="mt-5 flex flex-wrap gap-2">
@@ -40,7 +45,7 @@ export function ProjectEntry({ project } : { project: Project }) {
                     
                     <div className="flex flex-wrap items-center justify-between gap-4 mt-5">
                     <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium">
-                      <Link to={`/work/${project.slug}`} className="transition-colors hover:text-accent">Details →</Link>
+                      <Link to={localizedPath(`/work/${project.slug}`)} className="transition-colors hover:text-accent">{text.details} →</Link>
                       {project.liveUrl && (
                       <a 
                         href={project.liveUrl}
@@ -48,8 +53,8 @@ export function ProjectEntry({ project } : { project: Project }) {
                         rel="noopener noreferrer"
                         className="transition-colors hover:text-accent"
                       >
-                        Live <span aria-hidden="true">↗</span>
-                        <span className="sr-only">(opens in a new tab)</span>
+                        {text.live} <span aria-hidden="true">↗</span>
+                        <span className="sr-only">{text.opensInNewTab}</span>
                       </a>
                       )}
                       <a
@@ -58,8 +63,8 @@ export function ProjectEntry({ project } : { project: Project }) {
                         rel="noopener noreferrer"
                         className="transition-colors hover:text-accent"
                       >
-                        Source <span aria-hidden="true">↗</span>
-                        <span className="sr-only">(opens in a new tab)</span>
+                        {text.source} <span aria-hidden="true">↗</span>
+                        <span className="sr-only">{text.opensInNewTab}</span>
                       </a>
                     </div>
                     </div>
