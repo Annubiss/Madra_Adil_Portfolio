@@ -81,7 +81,7 @@ export default function ProjectDetails({params}: Route.ComponentProps) {
                     flipId={`frame-${destinationProject.slug}`}
                     url={destinationProject.liveUrl ?? destinationProject.repoUrl}
                 >
-                    {destinationProject.demoPath || destinationProject.liveUrl && (
+                    {(destinationProject.demoPath || destinationProject.liveUrl) && (
                         <iframe
                             src={destinationProject.demoPath ? destinationProject.demoPath : destinationProject.liveUrl}
                             title={`${destinationProject.title} ${text.liveDemo}`}

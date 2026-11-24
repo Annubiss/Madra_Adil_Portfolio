@@ -1,22 +1,19 @@
 export type SkillsGroup = {
-    title: string;
+    title: { en: string; ro: string };
     skills: string[];
 }
 
 export const skillsGroup: SkillsGroup[] = [
     {
-        title: "Build",
+        title: { en: "Build", ro: "Construiesc cu" },
         skills: ["React", "TypeScript", "JavaScript", "HTML", "CSS", "Tailwind v4", "React Router", "Node.js"],
     },
-
     {
-        title: "Test & ship",
-        skills: ["Vitest", "Testing Library", "Vite", "Git", "Netlify"]
+        title: { en: "Test & ship", ro: "Testez si livrez" },
+        skills: ["Vitest", "Testing Library", "Vite", "Git", "Netlify"],
     },
-
     {
-        title: "Learning now",
+        title: { en: "Learning now", ro: "Invat acum" },
         skills: ["Angular", "Java"],
     },
 ]
-    

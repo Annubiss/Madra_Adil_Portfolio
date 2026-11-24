@@ -256,7 +256,7 @@ function ProjectHistorySection() {
           <div
             id="technology-filter"
             inert={!isFilterOpen}
-            className={`grid transition-grid[grid-template-rows] duration-200 ease-out motion-reduce:transition-none ${isFilterOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
+            className={`grid transition-[grid-template-rows] duration-200 ease-out motion-reduce:transition-none ${isFilterOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
           >
             <div className="overflow-hidden">
             <ul className="font-mono px-4.5 py-3 flex flex-col gap-1 border-t border-line">
@@ -302,14 +302,15 @@ function ProjectHistorySection() {
 
 function SkillsSection() {
   const text = useSiteText()
+  const language = useLanguage()
   return (
     <section className="max-w-5xl mx-auto px-6 sm:px-8 pb-24" id="skills">
       <SectionLabel number="03" label={text.sectionSkills}/>
 
       <div className="grid gap-4 md:grid-cols-3">
         {skillsGroup.map((skill) => (
-          <div className="p-6 bg-surface border border-line rounded-xl">
-            <h3 className="font-mono text-accent mb-4">{skill.title}</h3>
+          <div key={skill.title[language]} className="p-6 bg-surface border border-line rounded-xl">
+            <h3 className="font-mono text-accent mb-4">{skill.title[language]}</h3>
             <ul className="flex flex-wrap gap-2">
               {skill.skills.map((skill) => (
                 <StackChip name={skill}/>
@@ -360,11 +361,16 @@ function ContactSection() {
             <Mail />
             Email
           </a>
-          <a className="btn btn-primary" href="https://www.linkedin.com/in/adil-madra/">
+          <a 
+            className="btn btn-primary"
+            href="https://www.linkedin.com/in/adil-madra/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <ArrowUpRight />
             LinkedIn
           </a>
-          <a className="btn btn-primary" download="Madra_Adil_CV_EN.pdf">
+          <a className="btn btn-primary" download="Madra_Adil_CV_EN.pdf" href="Madra_Adil_CV_EN.pdf">
             <Download />
             CV
           </a>
